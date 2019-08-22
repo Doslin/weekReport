@@ -6,8 +6,16 @@
                 <div class="div_top_left_png">
                     <img src="../assets/images/top_left.png" class="top_left_png " >
                 </div >
-                <div class="div_top_png">
-                    <img src="../assets/images/top.png" class="top_png">
+                <div class="div_top_png" style="position: relative">
+                    <div style="height: 100%">
+                        <img src="../assets/images/top.png" class="top_png">
+                    </div>
+                    <div style="position: absolute;width: 3.01rem;margin-left: 2.14rem;margin-top: -0.33rem">
+                        <img src="../assets/images/top_vertical.png" >
+                        <div style="position: absolute;margin-left: 0.70rem;margin-top: -.45rem" >
+                            <span style="background: #019FE6FF;">学习概况</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="div_top_right_png">
                     <img src="../assets/images/top_right.png" class="top_right_png">

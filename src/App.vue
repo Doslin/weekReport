@@ -5,15 +5,15 @@
 </template>
 <script>
 export default {}
-document.addEventListener('DOMContentLoaded', () => {
-  //    将根元素的fontsize值设置为屏幕宽度的1/10
-  let fontSize = window.innerWidth / 10
-  //    为fontsize设置上限
-  fontSize = fontSize > 50 ? 50 : fontSize
-  const html = document.querySelector('html')
-  html.style.fontSize = fontSize + 'px'
-  console.log("fontSize:  "+fontSize)
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   //    将根元素的fontsize值设置为屏幕宽度的1/10
+//   let fontSize = window.innerWidth / 10
+//   //    为fontsize设置上限
+//   fontSize = fontSize > 50 ? 50 : fontSize
+//   const html = document.querySelector('html')
+//   html.style.fontSize = fontSize + 'px'
+//   console.log("fontSize:  "+fontSize)
+// })
 </script>
 <style lang="scss" scoped>
     #app {
