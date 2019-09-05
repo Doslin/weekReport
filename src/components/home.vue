@@ -31,16 +31,16 @@
                     <p>查看总计划完成情况</p>
                 </div>
             </div>
-            <div>
-                <div style="margin-left: 1.98rem;margin-top: 1.75rem">
-                    <div style="width: 4.35rem">
-                       <img src="../assets/images/below_vertical.png">
-                    </div>
-                </div>
-                <div style="width: 1.3rem">
-                    <img src="../assets/images/two_arrow.png">
-                </div>
-            </div>
+<!--            <div>-->
+<!--                <div style="margin-left: 1.98rem;margin-top: 1.75rem">-->
+<!--                    <div style="width: 4.35rem">-->
+<!--                       <img src="../assets/images/below_vertical.png">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style="width: 1.3rem">-->
+<!--                    <img src="../assets/images/two_arrow.png">-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </template>
@@ -54,7 +54,8 @@ export default {
     }
   },
   mounted: function () {
-
+    console.log(this.$route.fullPath)
+    console.log('document.body.clientHeight: ' + document.body.clientHeight)
   },
   methods: {
     totalProgress () {

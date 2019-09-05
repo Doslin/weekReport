@@ -1,8 +1,8 @@
 <template>
 <div class="back_img">
     <el-container>
-        <el-header style="padding: 0px">
-            <div class="header">
+        <el-header style="padding: 0px;height: auto" class="el-header">
+            <div class="header" style="height: 100%;width: 100%">
                 <div class="div_top_left_png">
                     <img src="../assets/images/top_left.png" class="top_left_png " >
                 </div >
@@ -36,20 +36,36 @@
                 <el-container>
                     <el-main  >
                         <div class="container" v-if="this.state === 1" >
-                            <div class="logo"><img src="../assets/images/logo.png" alt=""></div>
-                            <div class="container-content">
-                                <p>学生<span></span><i id="userName"></i></p>
-                                <p>本周学习周报</p>
+                            <div class="head_center">
+                                <div class="img_log">
+                                    <img src="../assets/images/logo.png" >
+                                </div>
+                                <div class="img_diamonds">
+                                    <img src="../assets/images/three_diamonds.png">
+                                </div>
                             </div>
-                            <div class="container-bottom">
-                                <button @click="goHome()"><a href="#">立即查看</a></button>
+                            <div class="tip-item-wrapper">
+                                <div class="student_study_weekly"><img src="../assets/images/student_study_weekly.png" alt=""></div>
+                                <div class="button" @click="goHome()">
+                                    <img src="../assets/images/button.png" alt="" >
+                                </div>
+
                                 <p style="font-size: small">周报数据来源于学生所使用的终端Pad，如Pad没有及时联网上传数据，则会导致没有数据或数据不全。</p>
+                                <div class="blow-verrical">
+                                    <img src="../assets/images/below_vertical.png" alt="">
+                                </div>
                             </div>
+<!--                            <div class="container-content">-->
+<!--                                <p>学生<span></span><i id="userName"></i></p>-->
+<!--                                <p>本周学习周报</p>-->
+<!--                            </div>-->
+<!--                            <div class="container-bottom">-->
+<!--                                <button @click="goHome()"><a href="#">立即查看</a></button>-->
+<!--                                <p style="font-size: small">周报数据来源于学生所使用的终端Pad，如Pad没有及时联网上传数据，则会导致没有数据或数据不全。</p>-->
+<!--                            </div>-->
                             <!-- <div class="noBoundData" id="noBoundData"><p>请先绑定学生信息</p></div> -->
                         </div>
-                        <template>
                             <router-view/>
-                        </template>
                     </el-main>
                 </el-container>
             <el-aside width="auto">
@@ -90,8 +106,9 @@ export default {
     }
   },
   mounted: function () {
-    this.baseUrls = 'http://192.168.1.72:8081/onlineEducation/'
+    this.baseUrls = process.env.VUE_APP_WEEKREPORT_URL
     this.init()
+    console.log('window.screen.availHeight: ' + window.screen.availHeight)
   },
   methods: {
     GetQueryString (name) {
@@ -108,11 +125,11 @@ export default {
     },
     goHome () {
       // var weekReportId = this.GetQueryString('weekReportId');
-      this.$router.push({ path: '/home?weekReportId=51' })
+      this.$router.push({ name: 'home', params: { weekReportId: 51 } })
       // location.href="home.html?weekReportId=51";
       // location.href="home.html?weekReportId="+weekReportId;
       // axios.get(this.baseUrl+'weekReport/getUserNameByWeekReportId?weekReportId='+weekReportId)
-      this.state =2;
+      this.state = 2
     },
     init () {
       this.$http.get(this.baseUrls + 'weekReport/getUserNameByWeekReportId?weekReportId=51')
@@ -130,6 +147,14 @@ export default {
     @import "../assets/styles/mixin.scss";
     @import "../assets/styles/indexVue.scss";
 
+    /*@media (min-width:370px) and (min-height:700px){*/
+    /*    .el-header {*/
+    /*        !*margin-top: .7rem;*!*/
+    /*    }*/
+    /*}*/
+    /*.el-header {*/
+    /*    margin-top: 128px;*/
+    /*}*/
 
     /*body > .el-container {*/
     /*    margin-bottom: 40px;*/

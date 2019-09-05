@@ -116,6 +116,7 @@ export default {
         })
       }, 500)
       setTimeout(() => {
+        // eslint-disable-next-line no-unused-vars
         let swiper3 = new Swiper('.swiper-container3', {
           pagination: {
             el: '.swiper-pagination3'
@@ -124,6 +125,7 @@ export default {
       }, 0)
     },
     setData (activeIndex) {
+      // eslint-disable-next-line no-unused-vars
       let that = this
       if (activeIndex === 0) { // 第一屏
         this.setaa = false
@@ -461,7 +463,9 @@ export default {
       var picture = $('.share').get(0) // 将jQuery对象转换为dom对象
       // 调用html2canvas插件
       html2canvas(picture).then(function (canvas) {
+        // eslint-disable-next-line no-unused-vars
         let canvasWidth = canvas.width * 4// canvas宽度
+        // eslint-disable-next-line no-unused-vars
         let canvasHeight = canvas.height * 4// canvas高度
         let w = picture.offsetWidth * 2
         let h = picture.offsetHeight * 2
@@ -645,6 +649,7 @@ export default {
       })
     // 加载swiper
     var that = this
+    // eslint-disable-next-line no-unused-vars
     var swiper = new Swiper('.swiper-container', {
       direction: 'vertical',
       pagination: {

@@ -1,5 +1,6 @@
 // vue.config.js
 const path = require('path')
+// eslint-disable-next-line no-unused-vars
 var webpack = require('webpack')
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -30,7 +31,7 @@ module.exports = {
     // 调试端口
     // port: 8989
   },
-  <!--新增的内容-->
+  // <!--新增的内容-->
   css: {
     loaderOptions: {
       postcss: {

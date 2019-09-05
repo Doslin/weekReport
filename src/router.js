@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import home from './components/home'
 
 Vue.use(Router)
 
@@ -14,12 +15,12 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './components/index.vue'),
       children: [
         {
-          path: '/home',
+          path: 'home',
           name: 'home',
-          component: () => import(/* webpackChunkName: "about" */ './components/home.vue')
+          component: home
         },
         {
-          path: '/totalProgress',
+          path: 'totalProgress',
           name: 'totalProgress',
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
