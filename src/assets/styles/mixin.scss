@@ -1,8 +1,1 @@
-$ratio: 75 / 10;
-/**
-  这里的$ratio的值的设定是用户决定的，可以根据自己实际需要（或者UI设计稿）进行修改
- */
- 1rem= 1fontsize
-@function px2rem($px) {
-  @return $px / $ratio + rem;
-}
+

@@ -26,21 +26,56 @@ img {
   float:left;
 }
 .three_left_th_png {
-  padding-top: 194px;
+  padding-top: 298px;
   width: 0.19rem;
 }
 .student_study_weekly {
+  position: relative;
   width: 564px;
   margin-left: 39px;
   margin-top: 60px;
+
 }
-.button {
-  width: 343px;
-  margin-left: 150px;
+.tip-item-name-text {
+  position: absolute;
+  top: 11px;
+  left: 18px;
+  font-size: 30px;
+  width: 156px;
+  color: #009FEFFF;
+  display: flex;
+}
+.tip-item-text {
+  position: absolute;
+  top: 147px;
+  left: 87px;
+  font-size: 65px;
+  color: white;
+
+}
+.item-footer {
+  width: 482px;
+  margin-left: 98px;
   margin-top: 131px;
-
 }
-
+.view-now {
+  margin-left: 52px;
+  width: 343px;
+  position: relative;
+}
+.view-now-text {
+  position: absolute;
+  top: 33px;
+  left: 111px;
+  font-size: 30px;
+  color: white;
+}
+.item-footer-tips {
+  color: #31AEF9FF;
+  font-size: 20px;
+  margin-top: 52px;
+  margin-bottom: 19px;
+}
 
 .div_left_aside{
   padding-left: 28px;
@@ -82,6 +117,10 @@ img {
   margin-left: -68px;
   padding-top: .4rem;
   margin-bottom: -.7rem;
+}
+.item-footer-blow-verrical {
+  margin-left: 52px;
+  width: 343px;
 }
 
 
