@@ -52,11 +52,8 @@ export default {
 }
 </script>
 <style scoped type="text/scss" lang="scss" rel="stylesheet/scss">
-
     @import "../assets/styles/home.scss";
     @import "../assets/styles/global.scss";
-
-
     .head_center{
         height: 2.18rem;
     }

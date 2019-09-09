@@ -1,28 +1,28 @@
 <template>
-    <div class="back_img">
+    <div class="index-wrapper">
         <el-container>
-            <el-header style="padding: 0px;height: auto" class="el-header">
-                <div class="header" style="height: 100%;width: 100%">
-                    <div class="div_top_left_png">
-                        <img src="../assets/images/top_left.png" class="top_left_png ">
+            <el-header class="el-header">
+                <div class="header" >
+                    <div class="index-header-left-image-wrapper">
+                        <img src="../assets/images/top_left.png" >
                     </div>
-                    <div class="div_top_png" style="position: relative">
+                    <div class="index-header-center-image-wrapper" style="position: relative">
                         <div style="height: 100%">
                             <img src="../assets/images/top.png" class="top_png">
                         </div>
-                        <div style="position: absolute;width: 3.01rem;margin-left: 2.14rem;margin-top: -0.33rem">
+                        <div class="page-tips-wrapper">
                             <img src="../assets/images/top_vertical.png">
-                            <div style="position: absolute;margin-left: 0.70rem;margin-top: -.45rem">
-                                <span style="background: #019FE6FF; color: white">学习概况</span>
+                            <div class="page-item-tips">
+                                <span class="page-tips">学习概况</span>
                             </div>
                         </div>
                     </div>
-                    <div class="div_top_right_png">
+                    <div class="index-header-right-image-wrapper">
                         <img src="../assets/images/top_right.png" class="top_right_png">
                     </div>
                 </div>
             </el-header>
-            <el-container>
+            <el-container class="index-container-wrapper">
                 <el-aside class="left_aside left_aside1" style="width: auto">
                     <div class="div_left_aside">
                         <div>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </el-aside>
-                <el-container>
+                <el-container class="index-container-main-wrapper">
                     <el-main>
                         <div class="container" v-if="this.state === 1">
                             <div class="head_center">
@@ -150,20 +150,51 @@
 </script>
 <style scoped type="text/scss" lang="scss" rel="stylesheet/scss">
     @import "../assets/styles/global.scss";
-    @import "../assets/styles/indexVue.scss";
-    .head_center{
-        height: 2.18rem;
-    }
-    .head_center > .img_log{
-        //margin-top: 0.50rem;
-        width: 3rem;
-    }
-    .head_center > .img_diamonds{
-        margin-top: -.7rem;
-        width: 1.73rem;
-        float: left;
-        margin-left: 6.49rem;
-    }
+    /*@import "../assets/styles/indexVue.scss";*/
+    .index-wrapper {
+        height: 100%;
+        width: 100%;
+        .el-header {
+            padding: 0px;
+            height: auto;
+            width: 100%;
+            .header {
+                height: 100%;
+                width: 100%;
+                .index-header-left-image-wrapper {
+                    width: 141px;
+                    padding-left: 28px;
+                    padding-top: 54px;
+                    float:left;
+                    z-index: 999;
+                }
+                .index-header-center-image-wrapper {
+                    position: relative;
+                    .page-tips-item-wrapper {
+                        position: absolute;
+                        width: 3.01rem;
+                        margin-right: 2.14rem;
+                        margin-top: -0.33rem;
+                        .page-item-tips {
+                            position: absolute;
+                            margin-left: .7rem;
+                            margin-top: -.45rem;
+                            .page-tips {
+                                background: #019FE6FF;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+                .index-header-right-image-wrapper {
+                    width: 141px;
+                    margin-left: -63px;
+                    padding-top: 54px;
+                    float:left;
+                }
+            }
+        }
 
+    }
 
 </style>

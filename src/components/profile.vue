@@ -2,7 +2,7 @@
     <div class="swiper-container swiper-container-v">
         <div class="swiper-wrapper" v-cloak>
             <!-- 第一屏 -->
-            <div class="swiper-slide" v-cloak>
+            <div class="swiper-slide swiper-slide1" v-cloak>
                 <div class="first-view-overview">
                     <div class="first-view-overview-imag1-wrapper">
                         <div class="first-view-overview-img1">
@@ -56,14 +56,47 @@
                     <el-progress :show-text="false" :stroke-width="9" :percentage="70" class="planned-task-progress"></el-progress>
                     </div>
                     <div class="task-progress-view-notes">
-                            <div class="illustrate-color-block-current">
-                            </div>
-                        <div >当前任务进度</div>
-                            <div class="illustrate-color-block-planned">
-                            </div>
-                        <div>计划任务进度</div>
+                        <div class="illustrate-color-block-current"></div>
+                        <div class="forcefontsize10">当前任务进度</div>
+                        <div class="illustrate-color-block-planned"></div>
+                        <div class="forcefontsize10">计划任务进度</div>
                     </div>
-                    <div class="text"> s</div>
+                </div>
+            </div>
+            <!-- 第二屏 -->
+            <div class="swiper-slide swiper-slide2 " v-cloak>
+                <div class="daily-task">
+                    <div class="daily-task-subtitle">每日任务</div>
+                    <img src="../assets/images/subtitle-desc.png" alt="">
+                    <div class="daily-task-text-item">
+                        <div class="daily-task-text">
+                            <p>这周任务中<br/>完成了 <span>{{}}</span>道练习题 综合正确率为 <span>{{}}</span>\n <span>{{}}</span> 正确率较低</p>
+                            <p>共观看了 <span>{{}}</span> 节课程视频<br/> 学习了 <span>{{}}</span> 个新单词 单词掌握率为 <span>{{}}</span></p>
+                        </div>
+                        <div class="daily-task-text">                    </div>
+
+                    </div>
+                </div>
+                <div class="intensive-practice">
+                    <div class="daily-task-subtitle">强化练习</div>
+                    <img src="../assets/images/subtitle-desc.png" alt="">
+                    <div class="daily-task-text-item">
+                        <div class="daily-task-text">
+                            <p>这一周<br/>完成了 <span>{{}}</span>道题 综合正确率为 <span>{{}}</span></p>
+                            <p>共学习了 <span>{{}}</span> 篇作文的常用写作方式<br/>  提笔出文不在话下</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-slide swiper-slide3 daily-task-details-wrapper" v-cloak>
+               <div class="daily-task-details-text">
+                    <p>这周任务中<br/>完成了 <span>{{}}</span>道练习题 <br/>综合正确率为 <span>{{}}</span>，比上周提高了 <span>{{}}</span> </p>
+                    <p>本周做题正确率如图</p>
+                </div>
+                <div class="daily-task-details-graph">
+                    <img src="../assets/images/middle_data_rectangle.png" alt="">
+
                 </div>
             </div>
         </div>
@@ -76,15 +109,14 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss" rel="stylesheet/scss">
+<style  type="text/scss" lang="scss" rel="stylesheet/scss">
     @import "../assets/styles/global";
     .swiper-container {
         .swiper-wrapper {
-            .swiper-slide {
+            .swiper-slide1 {
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
-                border: solid 1px black;
                 box-sizing: border-box;
                 .first-view-overview {
                     position: relative;
@@ -112,6 +144,7 @@
                                 display: flex;
                                 flex-direction: row;
                                 justify-content: center;
+                                margin-bottom: 10px;
                                 p {
                                     font-size: 20px;
                                     font-weight: 500;
@@ -159,6 +192,7 @@
                             display: flex;
                             flex-direction: row;
                             justify-content: center;
+                            margin-bottom: 10px;
                             p {
                                 font-size: 20px;
                                 font-weight: 500;
@@ -187,7 +221,6 @@
                             }
                         }
                     }
-
                     .first-view-overview-img3 {
                         position: absolute;
                         top: 300px;
@@ -206,6 +239,7 @@
                             display: flex;
                             flex-direction: row;
                             justify-content: center;
+                            margin-bottom: 10px;
                             p {
                                 font-size: 20px;
                                 font-weight: 500;
@@ -238,9 +272,8 @@
                 .first-view-total-task {
                     position: relative;
                     width: 100%;
-                    height: 100%;
-                    margin-top: 400px;
-                    overflow: hidden;
+                    height: 142px;
+                    margin-top: 320px;
                     box-sizing: border-box;
                     background-image: url("../assets/images/progress-gun.png");
                     background-repeat: no-repeat;
@@ -249,10 +282,11 @@
                     flex-direction: column;
                     justify-content: center;
                     .total-task-text {
+                        position: absolute;
                         font-size: 20px;
                         color: #FFFFFFFF;
                         font-weight: 500;
-                        padding-top: 0.18667rem;
+                        top: 10px;
                         padding-left: 0.36rem;
                     }
                     .task-progress-view {
@@ -269,15 +303,14 @@
                             position: absolute;
                             width: 100%;
                         }
+
                     }
                     .task-progress-view-notes {
-                        margin-top: .9rem;
+                        position: absolute;
+                        top: 58%;
                         margin-left: 27px;
                         display: flex;
                         flex-direction: row;
-                        position: relative;
-                        align-content: center;
-
                         .illustrate-color-block-current {
                             margin-top: .15rem;
                             background: #0E9FD2FF;
@@ -294,7 +327,7 @@
                             margin-left: .4rem;
                         }
                         div {
-                            font-size: 10px;
+                            font-size: 4px;
                             color: #41B1F9FF;
                         }
                     }

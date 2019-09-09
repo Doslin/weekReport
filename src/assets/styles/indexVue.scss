@@ -6,20 +6,20 @@ img {
   height: 100%;
 }
 
-.div_top_left_png{
+.index-header-left-image-wrapper {
   width: 141px;
   padding-left: 28px;
   padding-top: 54px;
   float:left;
   z-index: 999;
 }
-.div_top_png{
+.index-header-center-image-wrapper{
   width: 548px;
   float: left;
   margin-left: -68px;
   padding-top: 30px;
 }
-.div_top_right_png{
+.index-header-right-image-wrapper{
   width: 141px;
   margin-left: -63px;
   padding-top: 54px;
@@ -133,4 +133,17 @@ img {
 
 .footer{
   //margin-top: 1rem;
+}
+.head_center{
+  height: 2.18rem;
+}
+.head_center > .img_log{
+  //margin-top: 0.50rem;
+  width: 3rem;
+}
+.head_center > .img_diamonds{
+  margin-top: -.7rem;
+  width: 1.73rem;
+  float: left;
+  margin-left: 6.49rem;
 }
