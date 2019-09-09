@@ -1,0 +1,36 @@
+@import "./reset.scss";
+@import "./mixin.scss";
+
+
+$ratio: 375 / 10;
+
+@function px2rem($px) {
+  @return $px / $ratio + rem;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+.forcefontsize10 {
+  display: inline-block;
+  font-size: 12px;
+  -webkit-text-size-adjust:none;
+  -webkit-transform : scale(0.83,0.83);
+}
+
+.forcefontsize8 {
+  display: inline-block;
+  font-size: 12px;
+  -webkit-text-size-adjust:none;
+  -webkit-transform : scale(0.66,0.66);
+}
+
+.forcefontsize6 {
+  display: inline-block;
+  font-size: 12px;
+  -webkit-text-size-adjust:none;
+  -webkit-transform : scale(0.5,0.5);
+}
+.el-progress-bar .el-progress-bar__outer {
+  background-color: transparent !important;
+}

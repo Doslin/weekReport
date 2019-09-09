@@ -78,9 +78,8 @@ export default {
     }
   },
   mounted () {
-    console.log("this.$route.params.weekReportId：" + this.$route.params.weekReportId)
-    this.init(this.$route.params.weekReportId);
-
+    console.log('this.$route.params.weekReportId：' + this.$route.params.weekReportId)
+    this.init(this.$route.params.weekReportId)
   },
 
   methods: {

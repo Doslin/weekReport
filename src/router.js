@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import home from './components/home'
+import progress from './utils/progress'
 Vue.use(Router)
 
 export default new Router({
@@ -11,22 +12,35 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './components/index.vue'),
+      component: () => import(/* webpackChunkName: "about" */ './components/index1.vue'),
       children: [
         {
-          path: '/home',
-          name: 'home',
-          component: () => import(/* webpackChunkName: "about" */ './components/home.vue')
+          path: 'home',
+          name: 'home1',
+          component: home
         },
         {
-          path: '/totalProgress',
+          path: 'totalProgress',
           name: 'totalProgress',
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
           component: () => import(/* webpackChunkName: "about" */ './components/totalProgress.vue')
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import(/* webpackChunkName: "about" */ './components/profile.vue')
         }
       ]
+    },
+    {
+      path: '/progress',
+      name: 'progress',
+      component: progress
     }
   ]
 })

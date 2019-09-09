@@ -1,5 +1,6 @@
 // vue.config.js
 const path = require('path')
+// eslint-disable-next-line no-unused-vars
 var webpack = require('webpack')
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -30,7 +31,7 @@ module.exports = {
     // 调试端口
     // port: 8989
   },
-  <!--新增的内容-->
+  // <!--新增的内容-->
   css: {
     loaderOptions: {
       postcss: {
@@ -46,7 +47,7 @@ module.exports = {
             // replace: true, // （布尔值）替换包含REM的规则，而不是添加回退。
             mediaQuery: false, //（布尔值）允许在媒体查询中转换px。
             minPixelValue: 3 //设置要替换的最小像素值(3px会被转rem)。 默认 0
-          }),
+          })
         ]
       }
     }
