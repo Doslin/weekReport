@@ -89,14 +89,45 @@
                 </div>
 
             </div>
+            <!-- 第三屏 -->
             <div class="swiper-slide swiper-slide3 daily-task-details-wrapper" v-cloak>
                <div class="daily-task-details-text">
-                    <p>这周任务中<br/>完成了 <span>{{}}</span>道练习题 <br/>综合正确率为 <span>{{}}</span>，比上周提高了 <span>{{}}</span> </p>
-                    <p>本周做题正确率如图</p>
+                   <p>这周任务中</p>
+                   <p>完成了<span>58</span>道练习题 </p>
+                   <p>综合正确率为 <span>{{}}</span>，比上周提高了 <span>{{}}</span></p>
+                   <p>本周做题正确率如图</p>
                 </div>
-                <div class="daily-task-details-graph">
-                    <img src="../assets/images/middle_data_rectangle.png" alt="">
-
+                <div class="daily-task-details-graph-wrapper">
+                        <div id="daily-task-details-graph-echart" >
+                        </div>
+                </div>
+                <div class="daily-task-details-text">
+                    <p>其中 <span>完型填空</span> 正确率最高 为<span>56%</span></p>
+                    <p><span>阅读理解</span>正确率最低 为<span>16%</span></p>
+                </div>
+            </div>
+            <!-- 第四屏 -->
+            <div class="swiper-slide swiper-slide3 daily-task-details-wrapper" v-cloak>
+                <div class="daily-task-details-text">
+                    <p>这周任务中</p>
+                    <p>观看了<span>58</span>节课程视频 </p>
+                    <p>学习了 <span>{{}}</span>个新单词</p>
+                    <p>还有 <span>{{}}</span>个单词没有掌握</p>
+                    <p>单词掌握率为 <span>{{}}</span> 比上周提升了 <span>{{}}</span> </p>
+                </div>
+                <div class="daily-task-details-words-text">
+                    <div class="daily-task-details-words">
+                        <div class="week-studied-word">本周已学单词 <span>{{}}</span>/<span>{{}}</span></div>
+                        <zl-progress class="zl-progress" :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"/>
+                    </div>
+                    <div class="daily-task-details-words">
+                        <div class="week-studied-word">本周单词掌握率 <span>{{}}</span>/<span>{{}}</span></div>
+                        <zl-progress class="zl-progress" :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"/>
+                    </div>
+                    <div class="daily-task-details-words">
+                        <div class="week-studied-word">累计单词掌握情况 <span>{{}}</span>/<span>{{}}</span></div>
+                        <zl-progress class="zl-progress" :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,8 +135,141 @@
 </template>
 
 <script>
+  import zlProgress from '../utils/zlProgress'
+  import Swiper from "swiper"
   export default {
-    name: ''
+    name: '',
+    mounted () {
+      this.initSwiper()
+    },
+    data () {
+      return {
+        studentName: '小白',
+        progressValue: 80,
+        colorStart:'#03B4FDFF',
+        colorEnd: '#FFEE22FF'
+      }
+    },
+    methods: {
+      // 加载swiper
+      initSwiper () {
+        var that=this;
+        var swiper = new Swiper('.swiper-container', {
+          direction: 'vertical',
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          on: {
+            slideChangeTransitionEnd: function () {
+              that.setData(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+            },
+          },
+        });
+      },
+      setData (activeIndex) {
+        var that = this;
+        if (activeIndex == 0) {//第一屏
+          this.setaa = false;
+          // this.setHome1();
+        } else if (activeIndex == 1) {//第二屏
+          this.setaa = true;
+        } else if (activeIndex == 2) {//第三屏
+          var dailyTaskDetailGraph = this.$echarts.init(document.getElementById('daily-task-details-graph-echart'));
+          console.log(dailyTaskDetailGraph)
+          dailyTaskDetailGraph.setOption({
+            grid: {
+              left: '0%',
+              right: '4%',
+              bottom: '10%',
+              top: '15%',
+              containLabel: true
+            },
+            tooltip: {},
+            xAxis : [{
+              type : 'category',
+              data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],
+              axisTick: {alignWithLabel: false},
+              splitLine: {show: false},
+              axisLine :{show:false},//显示坐标轴轴线
+              axisTick:{show :false},//刻度
+              axisLabel:{
+                interval:0,
+                color: "#A3A9AF",  //X轴文字颜色
+                fontSize:10,
+              },
+            }],
+            yAxis: [{
+              splitLine: {show: false},
+              show: false
+            }],
+            series: [
+              {
+                name: '进度条背景',
+                type: 'bar',
+                barGap: '-100%',//不同系列的柱间距离，为百分比。
+                // 在同一坐标系上，此属性会被多个 'bar' 系列共享。
+                // 此属性应设置于此坐标系中最后一个 'bar' 系列上才会生效，
+                // 并且是对此坐标系中所有 'bar' 系列生效。
+                barWidth: 7,
+                data: [100, 100, 100, 100, 100, 100],
+                color: '#0587C4',//柱条颜色
+                itemStyle: {
+                  normal: {
+                    barBorderRadius: 46
+                  }
+                }
+              },
+              {
+              name: '销量',
+              type: 'bar',
+              barWidth: '7',
+              // barShadow:'#BFDDFF',
+              label:{
+                show:true,
+                position:'top',
+                distance:5,
+                formatter: '{@score}%',
+                color:'#140F26',
+                fontWeight:'bold',
+                fontSize:14,
+              },
+              itemStyle:{
+                normal: {
+                  barBorderRadius:46,
+
+                  color:  new this.$echarts.graphic.LinearGradient(
+                      0, 0, 0, 1,
+                      [
+                        {offset: 1, color: '#03B4FDFF'},
+                        {offset: 0.9, color: '#03B4FDFF'},
+                        {offset: 0, color: '#FFEE22FF'}
+                      ]
+                    ),
+                  pieces: [{gte: 7, lte: 95, color: 'green'}],
+                },
+                emphasis: {
+
+                  color: new this.$echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      {offset: 1, color: '#03B4FDFF'},
+                      {offset: 0, color: '#FFEE22FF'}
+                    ]
+                  )
+                }
+              },
+              data: [5, 20, 36, 100, 10, 20]
+            }
+
+            ]
+          });
+        }
+      }
+    },
+    components: {
+      'zl-progress': zlProgress
+    }
   }
 </script>
 
@@ -332,6 +496,76 @@
                         }
                     }
 
+                }
+            }
+            .swiper-slide2 {}
+            .swiper-slide3 {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                box-sizing: border-box;
+                .daily-task-details-text {
+                    margin-left: 48px;
+                    margin-top: 23px;
+                    margin-bottom: 89px;
+                    font-weight: 500;
+                    p {
+                        color: #FFFFFFFF;
+                        font-size: 26px;
+                        padding: 8px;
+                        span {
+                            color: #FFEE22FF;
+                            font-size: 26px;
+                            padding: 0 4px;
+                        }
+                    }
+                }
+                .daily-task-details-graph-wrapper {
+                    position: relative;
+                    margin: 0 31px 0 35px;
+                    height: 384px;
+                    background-image: url("../assets/images/middle_data_rectangle.png");
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                    #daily-task-details-graph-echart {
+                        position: absolute;
+                        left: 0px;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .daily-task-details-words-text {
+                    margin-top: -48px;
+                    padding-left: 44px;
+                    padding-right: 39px;
+                    .daily-task-details-words {
+                        position: relative;
+                        width: 100%;
+                        height: 142px;
+                        box-sizing: border-box;
+                        background-image: url("../assets/images/progress-gun.png");
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        margin: 40px 0;
+                        .week-studied-word {
+                            position: absolute;
+                            left: 36px;
+                            top: 28px;
+                            font-size:20px;
+                            font-weight:500;
+                            color:rgba(205,243,255,1);
+                        }
+                        .zl-progress {
+                            position: absolute;
+                            left: 0.470rem;
+                            top: 0.89043rem;
+                            width: 5.18333rem;
+                            height: 0.22667rem;
+                        }
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from './components/home'
-import progress from './utils/progress'
+import progress from './utils/zlProgress'
 Vue.use(Router)
 
 export default new Router({
