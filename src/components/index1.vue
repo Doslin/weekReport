@@ -61,6 +61,8 @@
                                 </div>
                             </div>
                         </div>
+                        <zl-progress :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"
+                        style="position: absolute;top: 300px"/>
                         <router-view/>
                         <div class="item-footer-blow-verrical">
                             <img src="../assets/images/below_vertical.png" alt="">
@@ -103,12 +105,16 @@
 </template>
 
 <script>
+import zlProgress from '../utils/zlProgress'
   export default {
-    name: '',
+      name: 'index1',
     data () {
       return {
         state: 1,
-        studentName: '小白'
+        studentName: '小白',
+        progressValue: 80,
+        colorStart:'#03B4FDFF',
+        colorEnd: '#FFEE22FF'
       }
     },
     mounted: function () {
@@ -146,6 +152,9 @@
             }
           })
       }
+    },
+    components: {
+      'zl-progress': zlProgress
     }
   }
 </script>

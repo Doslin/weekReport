@@ -8,7 +8,7 @@ import h5 from './assets/index'
 import 'lib-flexible'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
-// import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 import './rem.js'
 // import $ from 'jquery'
 import ElementUI from 'element-ui'
@@ -19,7 +19,6 @@ Vue.use(Antd)
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts
 Vue.prototype.$http = axios
-
 Vue.use(h5)
 new Vue({
   router,
