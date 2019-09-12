@@ -34,3 +34,9 @@ img {
 .el-progress-bar .el-progress-bar__outer {
   background-color: transparent !important;
 }
+.el-progress-bar__inner {
+  background: linear-gradient(to right, #03B4FDFF, #FFEE22FF 400px);
+}
+.el-progress-bar__outer {
+  //background
+}

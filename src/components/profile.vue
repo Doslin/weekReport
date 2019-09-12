@@ -118,15 +118,86 @@
                 <div class="daily-task-details-words-text">
                     <div class="daily-task-details-words">
                         <div class="week-studied-word">本周已学单词 <span>{{}}</span>/<span>{{}}</span></div>
-                        <zl-progress class="zl-progress" :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"/>
+                        <el-progress class="zl-progress" :text-inside="false"
+                                     :stroke-width="10" :percentage="50"
+                                     :show-text="false"   />
                     </div>
                     <div class="daily-task-details-words">
                         <div class="week-studied-word">本周单词掌握率 <span>{{}}</span>/<span>{{}}</span></div>
-                        <zl-progress class="zl-progress" :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"/>
+                        <el-progress class="zl-progress" :text-inside="false"
+                                     :stroke-width="10" :percentage="50"
+                                     :show-text="false"   />
                     </div>
                     <div class="daily-task-details-words">
                         <div class="week-studied-word">累计单词掌握情况 <span>{{}}</span>/<span>{{}}</span></div>
-                        <zl-progress class="zl-progress" :zlvalue="progressValue" :zlcolorstart="colorStart" :zlcolorend="colorEnd"/>
+                        <el-progress class="zl-progress" :text-inside="false"
+                                     :stroke-width="10" :percentage="50"
+                                     :show-text="false"   />
+                    </div>
+                </div>
+                <div class="daily-task-details-tips">
+                    <p>单词学习超越了平台 <span>{{}}</span>的学生</p>
+                </div>
+            </div>
+            <!-- 第五屏 -->
+            <div class="swiper-slide swiper-slide5 daily-task-details-wrapper" v-cloak>
+                <div class="daily-task-details-text">
+                    <p>这一周</p>
+                    <p>共做了<span>58</span>套试卷</p>
+                    <p>平均分 <span>{{}}</span>分</p>
+                    <p>比上周提升了 <span>{{}}</span>分</p>
+                </div>
+                <div class="calendar-questions-week-scores">
+                    <div class="only-look-this-week">
+                        <div class="only-look-this-week-img">
+                            <img src="../assets/images/light-green-selected.png" >
+                        </div>
+                        <span>只看本周分数</span>
+                    </div>
+                    <div id="ExamPaper"></div>
+                </div>
+                <!-- swiper -->
+                <div class="swiper-container3">
+                    <div class="swiper-wrapper" v-cloak v-show='renderData&&renderData.listExamPaper.listPaper!=null'>
+                        <div class="swiper-slide flex_between" v-for="(item,index) in renderData&&renderData.listExamPaper.listPaper">
+                            <div class="swiper-container3-item" v-cloak>
+                                <h4><span></span><span>{{item.paperName==""||item.paperName==null?'随机考试':item.paperName}}</span></h4>
+                                <p>用时:{{item.duration==null?'--':MillisecondToDate(item.duration)}}</p>
+                                <p>{{item.submitTime==null?'--':item.submitTime}}</p>
+                            </div>
+                            <div class="swiper-container3-item"  v-cloak>
+                                <p class="score">
+                                    {{item.score}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination3" v-show='renderData&&renderData.listExamPaper.listPaper!=null'> </div>
+                    <div class="noData" v-cloak v-show="renderData==null||renderData==''||(renderData&&renderData.listExamPaper.listPaper==null)">暂无数据</div>
+                </div>
+            </div>
+            <!-- 第六屏 -->
+            <div class="swiper-slide swiper-slide5 daily-task-details-wrapper" v-cloak>
+                <div class="daily-task-details-text">
+                    <p>这一周</p>
+                    <p>共作答了<span>58</span>道题</p>
+                    <p>综合正确率 <span>{{}}</span></p>
+                    <p>比上周提升了 <span>{{}}</span></p>
+                </div>
+                <div class="swiper-slide-item swiper-slide4-content">
+                    <!-- 图表 -->
+                    <div class="listQuestionBank">
+                        <div id="listQuestionBank" v-show="renderData&&renderData.listQuestionBank.questionNum!=null"></div>
+                        <div class="noData" v-cloak v-show="renderData==''||renderData==null||renderData&&renderData.listQuestionBank.questionNum==null">暂无数据</div>
+                    </div>
+                    <div class="questionBank">
+                        <div>
+                            <p v-for="(item,index) in questionBank">
+                                <span :style="'background:'+item.color"></span>{{item.text}}
+                                <span v-show="index!=questionBank.length-1">{{item.questionNum==null?'--':item.questionNum}} 道</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,6 +207,7 @@
 
 <script>
   import zlProgress from '../utils/zlProgress'
+  import lprogress from '../utils/lprogress'
   import Swiper from "swiper"
   export default {
     name: '',
@@ -145,7 +217,7 @@
     data () {
       return {
         studentName: '小白',
-        progressValue: 80,
+        progressValue: 10,
         colorStart:'#03B4FDFF',
         colorEnd: '#FFEE22FF'
       }
@@ -174,7 +246,8 @@
           // this.setHome1();
         } else if (activeIndex == 1) {//第二屏
           this.setaa = true;
-        } else if (activeIndex == 2) {//第三屏
+        }
+        else if (activeIndex == 2) {//第三屏
           var dailyTaskDetailGraph = this.$echarts.init(document.getElementById('daily-task-details-graph-echart'));
           console.log(dailyTaskDetailGraph)
           dailyTaskDetailGraph.setOption({
@@ -265,10 +338,12 @@
             ]
           });
         }
+
       }
     },
     components: {
-      'zl-progress': zlProgress
+      'zl-progress': zlProgress,
+      'l-progress': lprogress
     }
   }
 </script>
@@ -276,7 +351,9 @@
 <style  type="text/scss" lang="scss" rel="stylesheet/scss">
     @import "../assets/styles/global";
     .swiper-container {
+        height: 100%;
         .swiper-wrapper {
+            height: 100%;
             .swiper-slide1 {
                 width: 100%;
                 height: 100%;
@@ -499,7 +576,8 @@
                 }
             }
             .swiper-slide2 {}
-            .swiper-slide3 {
+            .swiper-slide {
+                position: relative;
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
@@ -564,6 +642,59 @@
                             top: 0.89043rem;
                             width: 5.18333rem;
                             height: 0.22667rem;
+                        }
+                    }
+                }
+                .daily-task-details-tips {
+                    position: absolute;
+                    bottom: 40px;
+                    left: 79px;
+                    font-weight: 500;
+                    color: #FFFFFFFF;
+                    font-size: 36px;
+                    span {
+                        color: #FFEE22FF;
+                    }
+
+                }
+            }
+            .swiper-slide5 {
+                .calendar-questions-week-scores {
+                    position: relative;
+                    height: 384px;
+                    left: 35px;
+                    width: 571px;
+                    background-image: url("../assets/images/middle_data_rectangle.png");
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                    .only-look-this-week {
+                        position: absolute;
+                        left: 379px;
+                        top: 33px;
+                        display: flex;
+                        align-items: center;
+
+                        .only-look-this-week-img {
+                            box-sizing: border-box;
+                            width: 18px;
+                            height: 18px;
+                            background-image: url("../assets/images/light-blue-slect.png");
+                            background-repeat: no-repeat;
+                            background-size: 100% 100%;
+
+                            img {
+                               margin: 3px 3px;
+                                width: 12px;
+                                height: 12px;
+                            }
+                        }
+                        span {
+                            height:30px;
+                            font-size:22px;
+                            font-weight:400;
+                            color:rgba(96,218,255,1);
+                            line-height:30px;
+                            margin-left: 7px;
                         }
                     }
                 }
