@@ -993,6 +993,7 @@
           const vv = Math.round(v1 / v2 * 100)
           return vv
         }
+
         return vv
       }
     },
@@ -1256,6 +1257,7 @@
 
                 }
             }
+<<<<<<< HEAD
             .swiper-slide2 {
                 .daily-task {
                     position: relative;
@@ -1298,6 +1300,9 @@
                     }
                 }
             }
+=======
+            .swiper-slide2 {}
+>>>>>>> ada413b79d32a4c4e396aedba66965d5303eceb9
             .swiper-slide {
                 position: relative;
                 width: 100%;
