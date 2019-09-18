@@ -1,0 +1,55 @@
+.index-footer-wrapper {
+  // 此处做根据屏幕高度相应式
+  height: 150px !important;
+  .footer {
+    height: 100%;
+    position: relative;
+    .index-footer-left {
+      position: absolute;
+      width: 141px;
+      left: 28px;
+    }
+    .index-footer-center {
+      position: absolute;
+      width: 548px;
+      float: left;
+      left: 110px;
+      padding-top: .4rem;
+      margin-bottom: -.7rem;
+      .index-footer-center-swipe {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size:20px;
+        font-weight:500;
+        color:rgba(96,218,255,1);
+        p {
+          margin: 10px auto;
+
+        }
+        img {
+          width: 44px;
+          margin: 0 auto;
+        }
+      }
+      .index-footer-confirm-return-button {
+        width: 336px;
+        height: 108px;
+        margin-left: 102px;
+        font-size:30px;
+        font-weight:500;
+        color:rgba(255,255,255,1);
+        line-height:42px;
+        background-image: url("../assets/images/confirmReturnButton.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .index-footer-right {
+      position: absolute;
+      width: 141px;
+      left: 586px;
+      margin-bottom: 1rem;
+    }
+  }
+}

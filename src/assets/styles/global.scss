@@ -1,6 +1,6 @@
 @import "./reset.scss";
 @import "./mixin.scss";
-
+@import "./zlfooter.scss";
 
 $ratio: 375 / 10;
 
@@ -34,3 +34,13 @@ img {
 .el-progress-bar .el-progress-bar__outer {
   background-color: transparent !important;
 }
+.el-progress-bar__inner {
+  background: linear-gradient(to right, #03B4FDFF, #FFEE22FF 440px);
+}
+.el-progress-bar__outer {
+  //background
+}
+.ant-progress-inner {
+  background-color: transparent !important;
+}
+

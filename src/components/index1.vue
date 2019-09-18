@@ -100,7 +100,6 @@
                 </div>
             </el-footer>
         </el-container>
-
     </div>
 </template>
 
@@ -113,7 +112,7 @@ import zlProgress from '../utils/zlProgress'
         state: 1,
         studentName: '小白',
         progressValue: 80,
-        colorStart:'#03B4FDFF',
+        colorStart: '#03B4FDFF',
         colorEnd: '#FFEE22FF'
       }
     },
@@ -137,20 +136,28 @@ import zlProgress from '../utils/zlProgress'
       },
       viewNow () {
         // var weekReportId = this.GetQueryString('weekReportId');
-        this.$router.push({ name: 'profile', params: { weekReportId: 51 } })
+        // this.$router.push({ name: 'profile', params: { weekReportId: 51 } })
+        // this.$http.get(this.baseUrls + 'weekReport/getUserNameByWeekReportId?weekReportId=1')
+        //   .then((res) => {
+        //     console.log(res)
+        //     if (res.data.state === 200) {
+        //       document.getElementById('userName').innerHTML = res.data.data.renderData
+        //     }
+        //   })
+        this.$router.push({ name: 'totalProgress', params: { weekReportId: 1 } })
         // location.href="home.html?weekReportId=51";
         // location.href="home.html?weekReportId="+weekReportId;
         // axios.get(this.baseUrl+'weekReport/getUserNameByWeekReportId?weekReportId='+weekReportId)
         this.state = 2
       },
       init () {
-        this.$http.get(this.baseUrls + 'weekReport/getUserNameByWeekReportId?weekReportId=51')
-          .then((res) => {
-            console.log(res)
-            if (res.data.state === 200) {
-              document.getElementById('userName').innerHTML = res.data.data.renderData
-            }
-          })
+        // this.$http.get(this.baseUrls + 'weekReport/getUserNameByWeekReportId?weekReportId=51')
+        //   .then((res) => {
+        //     console.log(res)
+        //     if (res.data.state === 200) {
+        //       document.getElementById('userName').innerHTML = res.data.data.renderData
+        //     }
+        //   })
       }
     },
     components: {
@@ -343,7 +350,7 @@ import zlProgress from '../utils/zlProgress'
         }
         .index-footer-wrapper {
             // 此处做根据屏幕高度相应式
-            height: 210px !important;
+            height: 150px !important;
             .footer {
                 height: 100%;
                 position: relative;
