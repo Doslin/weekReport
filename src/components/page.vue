@@ -113,6 +113,7 @@
                         }
                         .page-tips-item {
                             position: relative;
+                            width: 228px;
                             margin-top: -.43rem;
                             padding: 0 10px;
                             color: white;

@@ -9,7 +9,7 @@ const store = new Vuex.Store({
     pageDescription: '',
     pageData: '',
     studentName: '',
-    weekReportId: 1
+    weekReportId: 2
   },
   mutations: {
     'SET_PAGE_STATE': (state, pageState) => { //eslint-disable-line quote-props

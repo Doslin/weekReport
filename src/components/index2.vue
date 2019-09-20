@@ -28,7 +28,6 @@
                         </div>
                     </div>
                 </div>
-
 <!--                <div class="item-footer-blow-verrical">-->
 <!--                    <img src="../assets/images/below_vertical.png" alt="">-->
 <!--                </div>-->
@@ -48,7 +47,6 @@ import zlFooter from './zlFooter'
     name: '',
     components: {
       page,
-      'zl-progress': zlProgress,
       'zl-footer': zlFooter
     },
       data () {
@@ -100,7 +98,7 @@ import zlFooter from './zlFooter'
             if (res.data.state === 200) {
               this.studentName = res.data.userName
               this.isHaveData = res.data.isHaveData
-              if (this.isHaveData == 1) {
+              if (this.isHaveData === 1) {
 
               } else {
 

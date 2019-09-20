@@ -7,7 +7,7 @@
                     <div class="task_plan-ti_ku_item task_plan-wrapper">
                         <div class="userProgress_item_title flex_between">
                             <span class="userProgress_item_title_text">任务计划</span>
-                            <span v-cloak class="userProgress_item_title_percentage">{{renderData.currentTaskDays?renderData&&renderData.currentTaskDays:0}}/{{this.totalTaskDays}}</span>
+                            <span v-cloak class="userProgress_item_title_percentage">{{renderData.currentTaskDays != null ?renderData&&renderData.currentTaskDays: '--'}}/{{this.totalTaskDays}}</span>
                         </div>
                         <div class="progress-graph">
                             <div class=" userProgress_item_progress flex_between">当前完成
@@ -71,11 +71,23 @@
             </div>
         </div>
     </page>
-    <zl-footer>
-        <div class="index-footer-confirmReturnButton" @click="back">
-            返回
-        </div>
-    </zl-footer>
+        <el-footer style="padding: 0px" class="index-footer-wrapper">
+            <div class="footer">
+                <div class="index-footer-left">
+                    <img src="../assets/images/below_left.png" class="below_left_png ">
+                </div>
+                <div class="index-footer-center">
+                    <div  class="index-footer-confirm-return-button">
+                        <div class="index-footer-confirmReturnButton" @click="back">
+                            返回
+                        </div>
+                    </div>
+                </div>
+                <div class="index-footer-right">
+                    <img src="../assets/images/below_right.png" class="below_right_png">
+                </div>
+            </div>
+        </el-footer>
     </div>
 </template>
 <script>
@@ -94,8 +106,8 @@ export default {
     'zl-footer': zlFooter
   },
   mounted () {
+    this.$store.dispatch('setPageState', '20')
     this.$store.dispatch('setPageDescription', '总计划完成情况')
-    this.$store.dispatch('setPageState', 4)
     console.log('this.$route.params.weekReportId：' + this.$store.state.weekReportId)
     this.weekReportId = this.$route.params.weekReportId
     this.$http.get(process.env.VUE_APP_WEEKREPORT_URL + 'weekReport/userTotalProgress?weekReportId=' + this.$store.state.weekReportId)
@@ -112,17 +124,22 @@ export default {
       this.$router.push('/index')
     },
     reload () {
-      console.log(21212)
       location.reload()
     },
     percentageCalculation (v1, v2) {
       var vv = 0
       if (v1 && v2) {
         const vv = Math.round(v1 / v2 * 100)
-          return vv
+        if (vv >= 100) {
+          return 100
+        }
+        return vv
+      }
+      if (vv >= 100) {
+        return 100
       }
       return vv
-    },
+  },
     GetQueryString(name) {
       var after = window.location.href.split('?')[1]
        if (after) {

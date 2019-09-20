@@ -16,7 +16,7 @@
                                 </p>
                             </div>
                             <div class="first-view-overview-img1-line3">
-                                <p>超过了<span class="complete-task">{{this.$store.state.pageData.taskNumberSurpass ? this.$store.state.pageData.taskNumberSurpass : '--'}}%</span>的学生
+                                <p>超过了<span class="complete-task">{{this.$store.state.pageData.taskNumberSurpass ? this.$store.state.pageData.taskNumberSurpass : 0}}%</span>的学生
                                 </p>
                             </div>
                         </div>
@@ -31,12 +31,12 @@
                             </p>
                         </div>
                         <div class="first-view-overview-img-line3">
-                            <p class="complete-task"></p><p>超过了<span class="complete-task">{{this.$store.state.pageData.questionNumberSurpass ? this.$store.state.pageData.questionNumberSurpass : '--'}}%</span>的学生</p>
+                            <p class="complete-task"></p><p>超过了<span class="complete-task">{{this.$store.state.pageData.questionNumberSurpass != null ? this.$store.state.pageData.questionNumberSurpass : '--'}}%</span>的学生</p>
                         </div>
                     </div>
                     <div class="first-view-overview-img3">
                         <div class="first-view-overview-img-line1">
-                            <p><span class="complete-task">{{this.$store.state.pageData.totalTime ? this.$store.state.pageData.totalTime : '--'}}</span>时</p>
+                            <p><span class="complete-task">{{this.$store.state.pageData.totalTime != null ? this.MillisecondToHour(this.$store.state.pageData.totalTime) : '--'}}</span>时</p>
                         </div>
                         <div class="first-view-overview-img-line2">
                             <p class="complete-task">
@@ -44,22 +44,22 @@
                             </p>
                         </div>
                         <div class="first-view-overview-img-line3">
-                            <p>超过了<span class="complete-task">{{this.$store.state.pageData.totalTimeSurpass ? this.$store.state.pageData.totalTimeSurpass : '--'}}%</span>的学生</p>
+                            <p>超过了<span class="complete-task">{{this.$store.state.pageData.totalTimeSurpass != null ? this.$store.state.pageData.totalTimeSurpass : '--'}}%</span>的学生</p>
 
                         </div>
                     </div>
                 </div>
                 <div class="first-view-total-task">
                     <div class="total-task-text">
-                        <p>总任务进度<span>{{this.$store.state.pageData.currentTaskDays ? this.$store.state.pageData.currentTaskDays : '--'}}</span>/<span>100</span></p>
+                        <p>总任务进度<span>{{this.$store.state.pageData.currentTaskDays != null ? this.$store.state.pageData.currentTaskDays : '--'}}</span>/<span>100</span></p>
                     </div>
                     <div class="task-progress-view-wrapper">
                         <div class="task-progress-view">
 <!--                            :strokeWidth="12"-->
-                            <a-progress :percent="90" :strokeColor= "`#FFFF9BFF`"   :showInfo="false" class="planned-task-progress"/>
-                            <el-progress :show-text="false" :stroke-width="6" :percentage="70" class="current-task-progress"/>
+                            <a-progress :percent="this.$store.state.pageData.planTaskProgress" :strokeColor= "`#FFFF9BFF`"   :showInfo="false" class="planned-task-progress"/>
+                            <el-progress :show-text="false" :stroke-width="6" :percentage="this.$store.state.pageData.currentTaskProgress" class="current-task-progress"/>
                         </div>
-                        <div class="task-progress-view-text">{{this.$store.state.pageData.planTaskProgress ? this.$store.state.pageData.planTaskProgress : '--'}}%</div>
+                        <div class="task-progress-view-text">{{this.$store.state.pageData.planTaskProgress != null ? this.$store.state.pageData.planTaskProgress : '--'}}%</div>
                     </div>
                     <div class="task-progress-view-notes">
                         <div class="illustrate-color-block-current"></div>
@@ -94,9 +94,9 @@
                             <div class="daily-task-subtitle ">每日任务</div>
                             <div class="daily-task-text-item">
                                 <div class="daily-task-text">
-                                    <p>这周任务中<br/>完成了 <span>{{this.$store.state.pageData.taskQuestionNumber ? this.$store.state.pageData.taskQuestionNumber : '--'}}</span>道练习题 综合正确率为 <span>{{this.$store.state.pageData.taskQuestionCorrect ? this.$store.state.pageData.taskQuestionCorrect : '--'}}%</span><br/><span>{{ this.getSubjectsTopicByType(this.$store.state.pageData.lowestCorrectType)}}</span> 正确率较低</p>
+                                    <p>这周任务中<br/>完成了 <span>{{this.$store.state.pageData.taskQuestionNumber != null ? this.$store.state.pageData.taskQuestionNumber : '--'}}</span>道练习题 综合正确率为 <span>{{this.$store.state.pageData.taskQuestionCorrect != null ? this.$store.state.pageData.taskQuestionCorrect : '--'}}%</span><br/><span>{{ this.getSubjectsTopicByType(this.$store.state.pageData.lowestCorrectType)}}</span> 正确率较低</p>
                                     <div class="daily-task-texts">                    </div>
-                                    <p>共观看了 <span>{{this.$store.state.pageData.taskVideoNumber === null ?'--':this.$store.state.pageData.taskVideoNumber}}</span> 节课程视频<br/> 学习了 <span>{{this.$store.state.pageData.taskWordNumber ? this.$store.state.pageData.taskWordNumber : '--'}}</span> 个新单词 单词掌握率为 <span>{{this.$store.state.pageData.taskWordMasterRate ? this.$store.state.pageData.taskWordMasterRate : '--'}}</span></p>
+                                    <p>共观看了 <span>{{this.$store.state.pageData.taskVideoNumber === null ?'--':this.$store.state.pageData.taskVideoNumber}}</span> 节课程视频<br/> 学习了 <span>{{this.$store.state.pageData.taskWordNumber != null ? this.$store.state.pageData.taskWordNumber : '--'}}</span> 个新单词 单词掌握率为 <span>{{this.$store.state.pageData.taskWordMasterRate != null ? this.$store.state.pageData.taskWordMasterRate : '--'}}%</span></p>
                                 </div>
                             </div>
                         </div>
@@ -104,8 +104,8 @@
                             <div class="daily-task-subtitle">专项练习</div>
                             <div class="daily-task-text-item">
                                 <div class="daily-task-text">
-                                    <p>这一周<br/>完成了 <span>{{this.$store.state.pageData.practiceQuestionNum ? this.$store.state.pageData.practiceQuestionNum : '--'}}</span>道题 综合正确率为 <span>{{this.$store.state.pageData.practiceQuestionCorrect ? this.$store.state.pageData.practiceQuestionCorrect : '--'}}%</span></p>
-                                    <p>共学习了 <span>{{this.$store.state.pageData.compositionNum ? this.$store.state.pageData.compositionNum : '--'}}</span> 篇作文的常用写作方式<br/>  提笔出文不在话下</p>
+                                    <p>这一周<br/>完成了 <span>{{this.$store.state.pageData.practiceQuestionNum != null ? this.$store.state.pageData.practiceQuestionNum : '--'}}</span>道题 综合正确率为 <span>{{this.$store.state.pageData.practiceQuestionCorrect != null ? this.$store.state.pageData.practiceQuestionCorrect : '--'}}%</span></p>
+                                    <p>共学习了 <span>{{this.$store.state.pageData.compositionNum != null ? this.$store.state.pageData.compositionNum : '--'}}</span> 篇作文的常用写作方式<br/>  提笔出文不在话下</p>
                                 </div>
                             </div>
                         </div>
@@ -136,8 +136,8 @@
                 <page>
                     <div class="daily-task-details-text">
                         <p>这周任务中</p>
-                        <p>完成了<span>{{this.$store.state.pageData.taskQuestionNumber ? this.$store.state.pageData.taskQuestionNumber : '--'}}</span>道练习题 </p>
-                        <p>综合正确率为 <span>{{this.$store.state.pageData.taskQuestionCorrect ? this.$store.state.pageData.taskQuestionCorrect : '--'}}%</span>，比上周{{this.$store.state.pageData.correctHigherThanLastweek > 0 ? `提高了` : `减少了`}} <span>{{this.$store.state.pageData.correctHigherThanLastweek ? this.$store.state.pageData.correctHigherThanLastweek : '--'}}%</span></p>
+                        <p>完成了<span>{{this.$store.state.pageData.taskQuestionNumber != null ? this.$store.state.pageData.taskQuestionNumber : '--'}}</span>道练习题 </p>
+                        <p>综合正确率为 <span>{{this.$store.state.pageData.taskQuestionCorrect != null ? this.$store.state.pageData.taskQuestionCorrect : '--'}}%</span>，比上周{{this.$store.state.pageData.correctHigherThanLastweek > 0 ? `提高了` : `减少了`}} <span>{{this.$store.state.pageData.correctHigherThanLastweek != null ? this.$store.state.pageData.correctHigherThanLastweek : '--'}}%</span></p>
                         <p>本周做题正确率如图</p>
                     </div>
                     <div class="daily-task-details-graph-wrapper">
@@ -145,8 +145,8 @@
                         </div>
                     </div>
                     <div class="daily-task-details-text">
-                        <p>其中 <span>{{getSubjectsTopicByType(this.$store.state.pageData.highestCorrectType)}}</span> 正确率最高 为<span>{{this.$store.state.pageData.highestCorrect ? this.$store.state.pageData.highestCorrect : '--'}}%</span></p>
-                        <p><span>{{getSubjectsTopicByType(this.$store.state.pageData.lowestCorrectType)}}</span>正确率最低 为<span>{{this.$store.state.pageData.lowestCorrect ? this.$store.state.pageData.lowestCorrect : '--'}}%</span></p>
+                        <p>其中 <span>{{getSubjectsTopicByType(this.$store.state.pageData.highestCorrectType)}}</span> 正确率最高 为<span>{{this.$store.state.pageData.highestCorrect != null ? this.$store.state.pageData.highestCorrect : '--'}}%</span></p>
+                        <p><span>{{getSubjectsTopicByType(this.$store.state.pageData.lowestCorrectType)}}</span>正确率最低 为<span>{{this.$store.state.pageData.lowestCorrect != null ? this.$store.state.pageData.lowestCorrect : '--'}}%</span></p>
                     </div>
                     <div class="item-footer-blow-verrical">
                         <img src="../assets/images/below_vertical.png" alt="">
@@ -174,37 +174,37 @@
                 <page>
                     <div class="daily-task-details-text">
                         <p>这周任务中</p>
-                        <p>观看了<span>{{this.$store.state.pageData.taskVideoNumber ? this.$store.state.pageData.taskVideoNumber : '--'}}</span>节课程视频 </p>
-                        <p>学习了 <span>{{this.$store.state.pageData.taskWordNumber ? this.$store.state.pageData.taskWordNumber : '--'}}</span>个新单词</p>
-                        <p>还有 <span>{{this.$store.state.pageData.taskWordNotMasterNumber ? this.$store.state.pageData.taskWordNotMasterNumber : '--'}}</span>个单词没有掌握</p>
-                        <p>单词掌握率为 <span>{{this.$store.state.pageData.taskWordMasterRate ? this.$store.state.pageData.taskWordMasterRate : '--'}}</span> 比上周{{this.$store.state.pageData.correctHigherThanLastweek > 0 ? `提高了` : `减少了`}} <span>{{this.$store.state.pageData.taskWordMasterRateIncrease  ? this.$store.state.pageData.taskWordMasterRateIncrease : '--'}}</span> </p>
+                        <p>观看了<span>{{this.$store.state.pageData.taskVideoNumber != null ? this.$store.state.pageData.taskVideoNumber : '--'}}</span>节课程视频 </p>
+                        <p>学习了 <span>{{this.$store.state.pageData.taskWordNumber != null ? this.$store.state.pageData.taskWordNumber : '--'}}</span>个新单词</p>
+                        <p>还有 <span>{{this.$store.state.pageData.taskWordNotMasterNumber != null ? this.$store.state.pageData.taskWordNotMasterNumber : '--'}}</span>个单词没有掌握</p>
+                        <p>单词掌握率为 <span>{{this.$store.state.pageData.taskWordMasterRate != null ? this.$store.state.pageData.taskWordMasterRate : '--'}}%</span> 比上周{{this.$store.state.pageData.correctHigherThanLastweek > 0 ? `提高了` : `减少了`}} <span>{{this.$store.state.pageData.taskWordMasterRateIncrease != null  ? this.$store.state.pageData.taskWordMasterRateIncrease : '--'}}%</span> </p>
                     </div>
                     <div class="daily-task-details-words-text">
                         <div class="daily-task-details-words">
 <!--                            percentageCalculation(this.$store.state.pageData.taskWordNumber, this.$store.state.pageData.taskTotalWordNumber)-->
-                            <div class="week-studied-word">本周已学单词 <span>{{this.$store.state.pageData.taskWordNumber ? this.$store.state.pageData.taskWordNumber : '--'}}</span>/<span>{{this.$store.state.pageData.taskTotalWordNumber ? this.$store.state.pageData.taskTotalWordNumber : '--'}}</span></div>
+                            <div class="week-studied-word">本周已学单词 <span>{{this.$store.state.pageData.taskWordNumber != null ? this.$store.state.pageData.taskWordNumber : '--'}}</span>/<span>{{this.$store.state.pageData.taskTotalWordNumber != null ? this.$store.state.pageData.taskTotalWordNumber : '--'}}</span></div>
                             <el-progress class="zl-progress" :text-inside="false"
                                          :stroke-width="10" :percentage="percentageCalculation(this.$store.state.pageData.taskWordNumber, this.$store.state.pageData.taskTotalWordNumber)"
                                          :show-text="false"   />
                             <div class="week-studied-word-progress">{{percentageCalculation(this.$store.state.pageData.taskWordNumber, this.$store.state.pageData.taskTotalWordNumber)}}%</div>
                         </div>
                         <div class="daily-task-details-words">
-                            <div class="week-studied-word">本周单词掌握率 <span>{{this.$store.state.pageData.taskWordMasterNumber ? this.$store.state.pageData.taskWordMasterNumber : '--'}}</span>/<span>{{this.$store.state.pageData.taskWordNumber ? this.$store.state.pageData.taskWordNumber : '--'}}</span></div>
+                            <div class="week-studied-word">本周单词掌握率 <span>{{this.$store.state.pageData.taskWordMasterNumber != null ? this.$store.state.pageData.taskWordMasterNumber : '--'}}</span>/<span>{{this.$store.state.pageData.taskWordNumber != null ? this.$store.state.pageData.taskWordNumber : '--'}}</span></div>
                             <el-progress class="zl-progress" :text-inside="false"
                                          :stroke-width="10" :percentage="percentageCalculation(this.$store.state.pageData.taskWordMasterNumber, this.$store.state.pageData.taskWordNumber)"
                                          :show-text="false"   />
-                            <div class="week-studied-word-progress">{{percentageCalculation(this.$store.state.pageData.taskWordNumber, this.$store.state.pageData.taskTotalWordNumber)}}%</div>
+                            <div class="week-studied-word-progress">{{this.$store.state.pageData.taskWordMasterRate != null ? this.$store.state.pageData.taskWordMasterRate : '--'}}%</div>
                         </div>
                         <div class="daily-task-details-words">
-                            <div class="week-studied-word">累计单词掌握情况 <span>{{this.$store.state.pageData.totalWordMasterNumber ? this.$store.state.pageData.totalWordMasterNumber : '--'}}</span>/<span>{{this.$store.state.pageData.totalWordNumber ? this.$store.state.pageData.totalWordNumber : '--'}}</span></div>
+                            <div class="week-studied-word">累计单词掌握情况 <span>{{this.$store.state.pageData.totalWordMasterNumber != null ? this.$store.state.pageData.totalWordMasterNumber : '--'}}</span>/<span>{{this.$store.state.pageData.totalWordNumber != null ? this.$store.state.pageData.totalWordNumber : '--'}}</span></div>
                             <el-progress class="zl-progress" :text-inside="false"
                                          :stroke-width="10" :percentage="percentageCalculation(this.$store.state.pageData.totalWordMasterNumber, this.$store.state.pageData.totalWordNumber)"
                                          :show-text="false"   />
-                            <div class="week-studied-word-progress">{{percentageCalculation(this.$store.state.pageData.taskWordNumber, this.$store.state.pageData.taskTotalWordNumber)}}%</div>
+                            <div class="week-studied-word-progress">{{percentageCalculation(this.$store.state.pageData.totalWordMasterNumber, this.$store.state.pageData.totalWordNumber)}}%</div>
                         </div>
                     </div>
                     <div class="daily-task-details-tips">
-                        <p>单词学习超越了平台 <span>{{this.$store.state.pageData.taskWordMasterRateSurpass ? this.$store.state.pageData.taskWordMasterRateSurpass : '--'}}</span>%的学生</p>
+                        <p>单词学习超越了平台 <span>{{this.$store.state.pageData.taskWordMasterRateSurpass != null ? this.$store.state.pageData.taskWordMasterRateSurpass : '--'}}</span>%的学生</p>
                     </div>
                     <div class="item-footer-blow-verrical">
                         <img src="../assets/images/below_vertical.png" alt="">
@@ -232,9 +232,9 @@
                 <page>
                     <div class="daily-task-details-text">
                         <p>这一周</p>
-                        <p>共做了<span>{{this.$store.state.pageData.paperNum ? this.$store.state.pageData.paperNum : '--'}}</span>套试卷</p>
-                        <p>平均分 <span>{{this.$store.state.pageData.averageScore ? this.$store.state.pageData.averageScore : '--'}}</span>分</p>
-                        <p>比上周{{this.$store.state.pageData.increaseAverageScore > 0 ? `提高了` : `减少了`}}  <span>{{this.$store.state.pageData.increaseAverageScore ? this.$store.state.pageData.increaseAverageScore : '--'}}</span>分</p>
+                        <p>共做了<span>{{this.$store.state.pageData.paperNum != null ? this.$store.state.pageData.paperNum : '--'}}</span>套试卷</p>
+                        <p>平均分 <span>{{this.$store.state.pageData.averageScore != null ? this.$store.state.pageData.averageScore : '--'}}</span>分</p>
+                        <p>比上周{{this.$store.state.pageData.increaseAverageScore > 0 ? `提高了` : `减少了`}}  <span>{{this.$store.state.pageData.increaseAverageScore != null ? this.$store.state.pageData.increaseAverageScore : '--'}}</span>分</p>
                     </div>
                     <div class="calendar-questions-week-scores">
                         <div class="only-look-this-week">
@@ -246,9 +246,9 @@
                         <div id="ExamPaper"></div>
                     </div>
                     <!-- swiper -->
-                    <div id="swiper-container3">
-                        <div class="swiper-wrapper" v-cloak >
-                            <div class="swiper-slide flex_between" v-for="(item,index) in this.$store.state.pageData.paperDetailsJsonArray" :key="index">
+                    <div id="banner" class="swi-con" v-if="this.fourthScreen" v-cloak >
+                        <div class="swiper-wrapper" >
+                            <div class="swiper-slide flex_between" v-for="(item,index) in this.paperDetailsJsonArray" :key="index">
                                 <div class="item-wrapper">
                                     <div class="orange-square"></div>
                                     <div class="swiper-container3-item" v-cloak>
@@ -264,9 +264,9 @@
                                     <div class="swiper-container3-item-score-chinese">分</div>
                                 </div>
                             </div>
-                            <div class="swiper-pagination3" ></div>
                         </div>
 <!--                        <div class="noData" v-cloak >暂无数据</div>-->
+                        <div class="swiper-pagination3" ></div>
                     </div>
                     <div class="item-footer-blow-verrical">
                         <img src="../assets/images/below_vertical.png" alt="">
@@ -294,9 +294,9 @@
                 <page>
                     <div class="daily-task-details-text">
                         <p>这一周</p>
-                        <p>共作答了<span>{{this.$store.state.pageData.practiceQuestionNum ? this.$store.state.pageData.practiceQuestionNum : '--'}}</span>道题</p>
-                        <p>综合正确率 <span>{{this.$store.state.pageData.practiceQuestionCorrect ? this.$store.state.pageData.practiceQuestionCorrect : '--'}}</span>%</p>
-                        <p>比上周{{this.$store.state.pageData.practiceQuestionCorrectIncrease >0 ? '提升了' : '减少了'}} <span>{{this.$store.state.pageData.practiceQuestionCorrectIncrease ? this.$store.state.pageData.practiceQuestionCorrectIncrease : '--'}}</span></p>
+                        <p>共作答了<span>{{this.$store.state.pageData.practiceQuestionNum != null ? this.$store.state.pageData.practiceQuestionNum : '--'}}</span>道题</p>
+                        <p>综合正确率 <span>{{this.$store.state.pageData.practiceQuestionCorrect != null ? this.$store.state.pageData.practiceQuestionCorrect : '--'}}</span>%</p>
+                        <p>比上周{{this.$store.state.pageData.practiceQuestionCorrectIncrease >0 ? '提升了' : '减少了'}} <span>{{this.$store.state.pageData.practiceQuestionCorrectIncrease != null ? this.$store.state.pageData.practiceQuestionCorrectIncrease : '--'}}%</span></p>
                     </div>
                     <div class="swiper-slide-item swiper-slide6-content">
                         <!-- 图表 -->
@@ -376,6 +376,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="learn-total-plan-situation" @click="viewTotalProgress()">查看总计划完成情况 >></div>
                 </page>
                 <el-footer style="padding: 0px" class="index-footer-wrapper">
                     <div class="footer">
@@ -384,7 +385,7 @@
                         </div>
                         <div class="index-footer-center">
                             <div  class="index-footer-confirm-return-button">
-                                <div class="index-footer-confirmReturnButton" @click="back">
+                                <div class="index-footer-confirmReturnButton" @click="share">
                                     分享
                                 </div>
                             </div>
@@ -409,7 +410,9 @@
       this.initSwiper()
       var ss = [{ 'score': 25.0, 'paperName': '2018年全国Ⅰ卷高考真题A', 'duration': 100018, 'submitTime': '2019-09-10 16:04:17' },
         { 'score': 25.0, 'paperName': '2018年全国Ⅰ卷高考真题A', 'duration': 100018, 'submitTime': '2019-09-10 16:04:17' }]
+      // eval(this.$store.state.pageData.paperDetailsJson)
       this.paperDetailsJsonArray = ss
+      console.log(this.paperDetailsJsonArray)
       this.dataZoom = [
         {
           type: 'inside',
@@ -420,7 +423,7 @@
     },
     data () {
       return {
-        studentName: '小白',
+        fourthScreen: false,
         progressValue: 10,
         colorStart: '#03B4FDFF',
         colorEnd: '#FFEE22FF',
@@ -490,6 +493,22 @@
         }
         return result
       },
+      MillisecondToHour(value) {
+        let hourTime = 0
+        var secondTimes = parseInt(value / 1000)// 秒
+        if (secondTimes > 60) { //如果秒数大于60，将秒数转换成整数
+          //获取分钟，除以60取整数，得到整数分钟
+         var  minuteTimes = parseInt(secondTimes / 60)
+          //如果分钟大于60，将分钟转换成小时
+          if (minuteTimes > 60) {
+            //获取小时，获取分钟除以60，得到整数小时
+            hourTime = parseInt(minuteTime / 60)
+            //获取小时后取佘的分，获取分钟除以60取佘的分
+            minuteTime = parseInt(minuteTime % 60)
+          }
+        }
+        return hourTime
+      },
       setData (activeIndex) {
         // var that = this
         if (activeIndex === 0) { //第一屏
@@ -501,7 +520,8 @@
           this.setaa = true
           this.$store.dispatch('setPageDescription', '学习概况')
           this.$store.dispatch('setPageState', '11')
-        } else if (activeIndex === 2) { //第三屏
+        }
+        else if (activeIndex === 2) { //第三屏
           var dailyTaskDetailGraph = this.$echarts.init(document.getElementById('daily-task-details-graph-echart'))
           this.$store.dispatch('setPageDescription', '每日任务')
           this.$store.dispatch('setPageState', '11')
@@ -621,17 +641,27 @@
             }
             ]
           })
-        } else if (activeIndex === 3) { //第四屏
+        }
+        else if (activeIndex === 3) { //第四屏
           this.$store.dispatch('setPageDescription', '每日任务')
           this.$store.dispatch('setPageState', '11')
-        } else if (activeIndex === 4) { //第五屏
+        }
+        else if (activeIndex === 4) { //第五屏
+          this.fourthScreen = true
+          var swiper3 = new Swiper('.swi-con', {
+            observer: true,
+            observeParents: true,
+            pagination: {
+              el: '.swi-con-pagination',
+              clickable: true
+            }
+          })
           this.$store.dispatch('setPageDescription', '真题考核')
           this.$store.dispatch('setPageState', '11')
           // 真题考核图表
-          // this.$store.state.pageData.averageScoreJson
-          var averageScoreJsonArray = eval('[25,100,89,100,56,100,23,23]')
+          // '[25,100,89,100,56,100,23,23]'
+          var averageScoreJsonArray = eval(this.$store.state.pageData.averageScoreJson)
           // console.log((typeof averageScoreJsonArray=='object')&&averageScoreJsonArray.constructor==Array)
-          console.log('averageScoreJsonArray:  ' + averageScoreJsonArray)
           var ExamPaper = this.$echarts.init(document.getElementById('ExamPaper'))
           ExamPaper.clear()
           var averageScore = averageScoreJsonArray
@@ -749,15 +779,9 @@
           }
           // 使用刚指定的配置项和数据显示图表。
           ExamPaper.setOption(ExamPaperOption, true)
-            var swiper3 = new Swiper('#swiper-container3', {
-              observer: true,
-              observeParents: true,
-              pagination: {
-                el: '.swiper-pagination3',
-                clickable: true
-              }
-            })
-        } else if (activeIndex === 5) { //第六屏
+
+        }
+        else if (activeIndex === 5) { //第六屏
           this.$store.dispatch('setPageDescription', '强化练习')
           this.$store.dispatch('setPageState', '11')
           var listQuestionBank = this.$echarts.init(document.getElementById('listQuestionBank'))
@@ -769,9 +793,8 @@
             { value: 0 },
             { value: 0 }
           ]
-          // console.log(this.renderData.listQuestionBank.listSubjectsTopicCorrect);
           // var practiceQuestionCorrectJson = "[{\"correct\":25,\"sujectsTopicId\":1,\"questionNum\":1},{\"correct\":20,\"sujectsTopicId\":4,\"questionNum\":1},{\"correct\":33,\"sujectsTopicId\":5,\"questionNum\":9},{\"correct\":34,\"sujectsTopicId\":6,\"questionNum\":9},{\"correct\":34,\"sujectsTopicId\":12,\"questionNum\":1}]"
-          var practiceQuestionCorrectJson = this.renderData.listQuestionBank.listSubjectsTopicCorrect
+          var practiceQuestionCorrectJson = this.$store.state.pageData.practiceQuestionCorrectJson
           var practiceQuestionCorrectJsonArray = eval(practiceQuestionCorrectJson)
           if (practiceQuestionCorrectJsonArray != null) {
             for (var i = 0; i < practiceQuestionCorrectJsonArray.length; i++) {
@@ -783,7 +806,6 @@
                   data[2].value = datass.correct
                   break
                 case 4://七选五
-                  console.log(datass.questionNum)
                   this.questionBank[4].questionNum = questionNum
                   data[3].value = datass.correct
                   break
@@ -808,7 +830,7 @@
               right: 0
             },
             title: {
-              text: this.$store.state.pageData.practiceQuestionCorrect ? this.$store.state.pageData.practiceQuestionCorrect + '%' : '--' + '%',
+              text: this.$store.state.pageData.practiceQuestionCorrect !=null ? this.$store.state.pageData.practiceQuestionCorrect + '%' : '--' + '%',
               subtext: '综合正确率',
               left: 'center',
               top: 'center',
@@ -816,7 +838,7 @@
                 color: '#F9D543FF',
                 fontSize: 13,
                 height: 10,
-                lineHeight: 3
+                lineHeight: 10
               },
               subtextStyle: {
                 fontSize: 9,
@@ -831,12 +853,31 @@
               type: 'pie',
               // center: ['40%', '50%'],
               radius: ['39%', '50%'],
-              avoidLabelOverlap: false,
+              avoidLabelOverlap: true,
               hoverAnimation: false,
               fontSize: 10,
                 label: {
                   normal: {
                     formatter: '{a|{a} {c}%}',
+                    // formatter(a,c) {
+                    //   // let text = Math.round(v.percent)+'%' + '' + `${a|{a} {c}%}`
+                    //   let text = `{{a}}` + Math.round(`{c}`)+'%' + ''
+                    //
+                    //   console.log(text)
+                    //
+                    //   if(text.length <= 8)
+                    //   {
+                    //     return text;
+                    //   }else if(text.length > 8 && text.length <= 16){
+                    //     return text = `${text.slice(0,8)}\n${text.slice(8)}`
+                    //   }else if(text.length > 16 && text.length <= 24){
+                    //     return text = `${text.slice(0,8)}\n${text.slice(8,16)}\n${text.slice(16)}`
+                    //   }else if(text.length > 24 && text.length <= 30){
+                    //     return text = `${text.slice(0,8)}\n${text.slice(8,16)}\n${text.slice(16,24)}\n${text.slice(24)}`
+                    //   }else if(text.length > 30){
+                    //     return text = `${text.slice(0,8)}\n${text.slice(8,16)}\n${text.slice(16,24)}\n${text.slice(24,30)}\n${text.slice(30)}`
+                    //   }
+                    // },
                     borderRadius: 4,
                     rich: {
                       a: {
@@ -859,11 +900,12 @@
             color: ['#00FFE6FF', '#FF7F6EFF', '#FFBF45FF', '#23FF62FF', '#FF85C0FF']
           }
           listQuestionBank.setOption(listQuestionBankOption, true)
-        } else if (activeIndex === 6) {
+        }
+        else if (activeIndex === 6) {
           var learningEfficiencyAnalysis = this.$echarts.init(document.getElementById('learning-efficiency-analysis'))
           this.$store.dispatch('setPageDescription', '学习效率分析')
           this.$store.dispatch('setPageState', '17')
-          var practiceQuestionCorrectJson = this.$store.state.efficiencyJson
+          var practiceQuestionCorrectJson = this.$store.state.pageData.efficiencyJson
           // 将获取到的JSON字符串转为JSON
           var efficiencyJsonArrayEX = eval(practiceQuestionCorrectJson)
           // 获取JSON数组的长度
@@ -979,21 +1021,31 @@
         }
         return subjectsTopic
       },
-      back () {
-
+      share () {
+        this.$router.push({ name: 'share', params: { weekReportId: this.$store.state.weekReportId } }).then(() => {
+        })
+      },
+      viewTotalProgress() {
+        this.$router.push({ name: 'totalProgress', params: { weekReportId: this.$store.state.weekReportId } }).then(() => {
+        })
       },
       //计算表达式的值
       evil(fn) {
-        var Fn = Function;  //一个变量指向Function，防止有些前端编译工具报错
+        var Fn = Function // 一个变量指向Function，防止有些前端编译工具报错
         return new Fn('return ' + fn)();
       },
       percentageCalculation (v1, v2) {
         var vv = 0
         if (v1 && v2) {
           const vv = Math.round(v1 / v2 * 100)
+          if (vv >= 100) {
+            return 100
+          }
           return vv
         }
-
+        if (vv >= 100) {
+          return 100
+        }
         return vv
       }
     },
@@ -1257,7 +1309,6 @@
 
                 }
             }
-<<<<<<< HEAD
             .swiper-slide2 {
                 .daily-task {
                     position: relative;
@@ -1300,9 +1351,6 @@
                     }
                 }
             }
-=======
-            .swiper-slide2 {}
->>>>>>> ada413b79d32a4c4e396aedba66965d5303eceb9
             .swiper-slide {
                 position: relative;
                 width: 100%;
@@ -1451,16 +1499,17 @@
                     #ExamPaper {
                         position: absolute;
                         left: 0px;
-
                         width: 100%;
                         height: 100%;
                     }
                 }
-                #swiper-container3 {
+                .swi-con {
+                    width:80%;
+                    overflow:hidden;
+                    margin-top:43px;
+                    position:relative;
                     height: 199px;
                     left: 60px;
-                    width: 555px;
-                    top: 62px;
                    .swiper-wrapper {
                        height: 100%;
                        width: 100%;
@@ -1471,7 +1520,6 @@
                            background-image: url("../assets/images/rectangular-blue.png");
                            background-repeat: no-repeat;
                            background-size: 100% 100%;
-                           /*margin-right: 100px;*/
                            .item-wrapper {
                                display: flex;
                                .orange-square {
@@ -1558,7 +1606,7 @@
                         margin-left: 34px;
                         #listQuestionBank {
                             width: 550px;
-                            margin-left: 20px ;
+                            margin-left: -20px ;
                             height: 340px;
                             z-index: 200;
                             /*height: 350px;*/
@@ -1724,6 +1772,21 @@
                             padding-top: 44px;
                         }
                     }
+                }
+                .learn-total-plan-situation {
+                    display: -moz-box;/*兼容Firefox*/
+                    display: -webkit-box;/*兼容FSafari、Chrome*/
+                    -moz-box-align: center;/*兼容Firefox*/
+                    -webkit-box-align: center;/*兼容FSafari、Chrome */
+                    -moz-box-pack: center;/*兼容Firefox*/
+                    -webkit-box-pack: center;/*兼容FSafari、Chrome */
+                    font-size:30px;
+                    font-family:PingFangSC;
+                    font-weight:500;
+                    color:rgba(96,218,255,1);
+                    line-height:42px;
+                    margin-top: 40px;
+                    text-shadow:0px 0px 1px rgba(153,231,255,1);
                 }
                 .index-footer-confirmReturnButton {
                     display: -moz-box;/*兼容Firefox*/

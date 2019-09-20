@@ -13,7 +13,6 @@
                 </div>
                 <div v-else-if="this.$store.state.pageState === 17" class="index-footer-confirm-return-button">
                 </div>
-
                 <div v-else class="index-footer-center-swipe">
                     <p class="swipe-view">上滑查看本周详情</p>
                     <img src="../assets/images/swipe-show.png" class="below_png">
