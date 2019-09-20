@@ -52,18 +52,22 @@ import zlFooter from './zlFooter'
       data () {
         return {
           state: 1,
-          studentName: '小白',
+          studentName: '',
           progressValue: 80,
           colorStart: '#03B4FDFF',
           colorEnd: '#FFEE22FF',
-          isHaveData: 0
+          isHaveData: 0,
+          weekReportId: ''
         }
       },
       mounted: function () {
+        this.$store.dispatch('setWeekReportID', this.GetQueryString('weekReportId'))
         this.baseUrls = process.env.VUE_APP_WEEKREPORT_URL
         this.$store.dispatch('setPageDescription', '')
         this.$store.dispatch('setPageState', 1)
         this.init()
+        console.log('GetQueryString(\'weekReportId\'): ' +this.$store.state.weekReportId)
+        console.log(this.GetQueryString('weekReportId'))
       },
       methods: {
         GetQueryString (name) {
@@ -72,6 +76,7 @@ import zlFooter from './zlFooter'
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
             var r = after.match(reg)
             if (r != null) {
+              console.log('进入GetQueryString')
               return decodeURIComponent(r[2])
             } else {
               return null
@@ -92,9 +97,10 @@ import zlFooter from './zlFooter'
             })
           }
         },
+
         init () {
           // this.baseUrls + 'weekReport/getWeekReportById?weekReportId=1'
-          this.$http.get(this.baseUrls + 'weekReport/getWeekReportById?weekReportId=' + this.$store.state.weekReportId).then((res) => {
+          this.$http.get('http://192.168.1.72:8081/onlineEducation/' + 'weekReport/getWeekReportById?weekReportId=' + this.$store.state.weekReportId).then((res) => {
             if (res.data.state === 200) {
               this.studentName = res.data.userName
               this.isHaveData = res.data.isHaveData
@@ -144,7 +150,6 @@ import zlFooter from './zlFooter'
                         width: 156px;
                         color: #009FEFFF;
                         display: flex;
-
                     }
                     .tip-item-text {
                         position: absolute;

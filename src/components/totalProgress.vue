@@ -11,8 +11,8 @@
                         </div>
                         <div class="progress-graph">
                             <div class=" userProgress_item_progress flex_between">当前完成
-                                <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="100"  :show-text="false"   /> <span >{{this.percentageCalculation(renderData.currentTaskDays, this.totalTaskDays)}}%</span></div>
-                            <div class=" userProgress_item_progress flex_between">计划完成 <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="100"  :show-text="false"   /><span >{{percentageCalculation(renderData.planTaskDays, this.totalTaskDays)}}%</span></div>
+                                <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="this.percentageCalculation(renderData.currentTaskDays, this.totalTaskDays)"  :show-text="false"   /> <span >{{this.percentageCalculation(renderData.currentTaskDays, this.totalTaskDays)}}%</span></div>
+                            <div class=" userProgress_item_progress userProgress_item_progress_task_plan">计划完成 <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="percentageCalculation(renderData.planTaskDays, this.totalTaskDays)"  :show-text="false"   /><span >{{percentageCalculation(renderData.planTaskDays, this.totalTaskDays)}}%</span></div>
                         </div>
                     </div>
                     <div class="userProgress_item_title flex_between" style="margin-top: 44px"></div>
@@ -23,8 +23,8 @@
                         </div>
                         <div class="progress-graph">
                             <div class=" userProgress_item_progress flex_between">当前完成
-                                <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="95"  :show-text="false"   /> <span>{{this.percentageCalculation(renderData.questionAnswerNum, renderData.questionTotalNum)}}%</span></div>
-                            <div class=" userProgress_item_progress flex_between">计划完成 <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="100"  :show-text="false"   /><span >{{percentageCalculation(renderData.planTaskDays, this.totalTaskDays)}}%</span></div>
+                                <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="this.percentageCalculation(renderData.questionAnswerNum, renderData.questionTotalNum)"  :show-text="false"   /> <span>{{this.percentageCalculation(renderData.questionAnswerNum, renderData.questionTotalNum)}}%</span></div>
+                            <div class=" userProgress_item_progress userProgress_item_progress_special_plan">计划完成 <el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="percentageCalculation(renderData.planTaskDays, this.totalTaskDays)"  :show-text="false"   /><span >{{percentageCalculation(renderData.planTaskDays, this.totalTaskDays)}}%</span></div>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                                     <div>已完成{{this.renderData.completePaperNum?this.renderData&&this.renderData.completePaperNum:0}}套试卷</div>
                                 </div>
                             </div>
-                            <div class=" userProgress_item_progress flex_between"><div>当前完成</div><el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="100"  :show-text="false"   /><span>{{percentageCalculation(renderData.completePaperNum, renderData.totalPaperNum)}}%</span></div>
+                            <div class=" userProgress_item_progress flex_between"><div>当前完成</div><el-progress class="zl-progress" :text-inside="false"  :stroke-width="10" :percentage="percentageCalculation(renderData.completePaperNum, renderData.totalPaperNum)"  :show-text="false"   /><span>{{percentageCalculation(renderData.completePaperNum, renderData.totalPaperNum)}}%</span></div>
                         </div>
                         <!--单词-->
                         <div class="userProgress_item">
@@ -206,7 +206,7 @@ export default {
                             top: 48px;
                             left: -14px;
                             .userProgress_item_progress {
-                                margin-top: 30px;
+                                margin-top: 22px;
                                 display: flex;
                                 margin-left: 38px;
                                 flex-direction: row;
@@ -235,8 +235,11 @@ export default {
                                     flex: 1;
                                 }
                             }
+                            .userProgress_item_progress_task_plan {
+                                margin-top: 30px !important;
+                            }
                             .userProgress_item_progress:nth-child(2) {
-                                margin-top: 34px;
+                                margin-top: 30px !important;
                             }
                         }
 
@@ -266,9 +269,12 @@ export default {
                             display: flex;
                             width: 100%;
                             flex-direction: column;
+                            .userProgress_item_progress:nth-child(2) {
+                                margin-bottom: 39px !important;
+                            }
                             .userProgress_item_title {
                                 position: relative;
-                                margin-bottom: 21px;
+                                margin-bottom: 12px;
                                 display: flex;
                                 flex-direction: row;
                                 font-size:24px;
@@ -308,7 +314,7 @@ export default {
                                 text-shadow:0px 0px 1px rgba(153,231,255,1);
                                 margin-bottom: 38px;
                                 .zl-progress {
-                                    margin-left: 18.6px;
+                                    margin-left: 17px;
                                     width: 317px;
                                     margin-right: 16px;
                                     overflow: hidden;

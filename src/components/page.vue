@@ -127,7 +127,7 @@
                             -webkit-box-pack: center;/*兼容FSafari、Chrome */
                             /*background: #019FE6FF;*/
                             .page-tips {
-                                background: #019FE6FF;
+                                background: rgb(1,159,230);
                                 padding: 0 20px;
                             }
                         }

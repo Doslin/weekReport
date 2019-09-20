@@ -15,7 +15,7 @@ import { Progress } from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 
 Vue.use(ElementUI)
-Vue.use(Navigation, { router, store })
+// Vue.use(Navigation, { router, store })
 Vue.use(Progress)
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts

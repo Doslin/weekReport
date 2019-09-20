@@ -7,7 +7,7 @@
                 <div class="first-view-overview">
                     <div class="first-view-overview-imag1-wrapper">
                         <div class="first-view-overview-img1">
-                            <div class="first-view-overview-img1-line1">
+                            <div class="first-view-overview-img1-line1" >
                                 <p><span class="complete-task">{{this.$store.state.pageData.taskNumber ? this.$store.state.pageData.taskNumber : '--'}}</span>个</p>
                             </div>
                             <div class="first-view-overview-img1-line2">
@@ -264,9 +264,9 @@
                                     <div class="swiper-container3-item-score-chinese">分</div>
                                 </div>
                             </div>
+                            <div class="noData" v-cloak v-if="this.paperDetailsJsonArray == null || this.paperDetailsJsonArray == []" >暂无数据</div>
                         </div>
-<!--                        <div class="noData" v-cloak >暂无数据</div>-->
-                        <div class="swiper-pagination3" ></div>
+                        <div class="swi-con-pagination" ></div>
                     </div>
                     <div class="item-footer-blow-verrical">
                         <img src="../assets/images/below_vertical.png" alt="">
@@ -315,6 +315,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="daily-task-details-tips">
+                        <p>强化练习超越了平台 <span>{{this.$store.state.pageData.practiceQuestionCorrectSurpass != null ? this.$store.state.pageData.practiceQuestionCorrectSurpass : '--'}}</span>%的学生</p>
+                    </div>
                     <div class="item-footer-blow-verrical">
                         <img src="../assets/images/below_vertical.png" alt="">
                     </div>
@@ -340,16 +343,16 @@
             <div class="swiper-slide swiper-slide7 learning-efficiency-analysis-wrapper" v-cloak>
                 <page>
                     <div class="learning-efficiency-analysis-graph">
-                        <div class="learning-efficiency-analysis-graph-legend">
-                            <div class="correct-rate-this-week this-week">
-                                <div class="square"></div>
-                                <div>本周正确率</div>
-                            </div>
-                            <div class="task-volume-this-week this-week">
-                                <div class="square square-orange "></div>
-                                <div>本周任务量</div>
-                            </div>
-                        </div>
+<!--                        <div class="learning-efficiency-analysis-graph-legend">-->
+<!--                            <div class="correct-rate-this-week this-week">-->
+<!--                                <div class="square"></div>-->
+<!--                                <div>本周正确率</div>-->
+<!--                            </div>-->
+<!--                            <div class="task-volume-this-week this-week">-->
+<!--                                <div class="square square-orange "></div>-->
+<!--                                <div>本周任务量</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="learning-efficiency-analysis-wrapper">
                             <div id="learning-efficiency-analysis"></div>
                         </div>
@@ -425,16 +428,16 @@
       return {
         fourthScreen: false,
         progressValue: 10,
-        colorStart: '#03B4FDFF',
-        colorEnd: '#FFEE22FF',
+        colorStart: 'rgb(3,180,253)',
+        colorEnd: 'rgb(255,238,34)',
         renderData: '',
         questionBank: [
-          { color: '#FF85C0FF', text: '阅读理解', questionNum: 0 },
-          { color: '#00FFE6FF', text: '改错', questionNum: 0 },
-          { color: '#FF7F6EFF', text: '语法填空', questionNum: 0 },
-          { color: '#FFBF45FF', text: '完型填空', questionNum: 0 },
-          { color: '#23FF62FF', text: '七选五', questionNum: 0 },
-          { color: '#fff', text: '', questionNum: 0 }
+          { color: 'rgb(255,133,192)', text: '阅读理解', questionNum: 0 },
+          { color: 'rgb(0,255,230)', text: '改错', questionNum: 0 },
+          { color: 'rgb(255,127,110)', text: '语法填空', questionNum: 0 },
+          { color: 'rgb(255,191,69)', text: '完型填空', questionNum: 0 },
+          { color: 'rgb(35,255,98)', text: '七选五', questionNum: 0 },
+          { color: 'rgb(255,255,255)', text: '', questionNum: 0 }
         ],
         dataZoom: null,
         yAxis: [{
@@ -574,7 +577,7 @@
               axisLine: { show: false }, //显示坐标轴轴线
               axisLabel: {
                 interval: 0,
-                color: '#03FCCDFF', //X轴文字颜色
+                color: 'rgb(3,252,205)', //X轴文字颜色
                 fontSize: 10
               }
             }],
@@ -592,7 +595,7 @@
                 // 并且是对此坐标系中所有 'bar' 系列生效。
                 barWidth: 7,
                 data: typeProgressDataBackground,
-                color: '#0587C4', //柱条颜色
+                color: 'rgb(5,135,196)', //柱条颜色
                 itemStyle: {
                   normal: {
                     barBorderRadius: 46
@@ -609,7 +612,7 @@
                 position: 'top',
                 distance: 5,
                 formatter: '{@score}%',
-                color: '#03FCCDFF',
+                color: 'rgb(3,252,205)',
                 fontWeight: 'bold',
                 fontSize: 14
               },
@@ -619,9 +622,9 @@
                   color: new this.$echarts.graphic.LinearGradient(
                       0, 0, 0, 1,
                       [
-                        { offset: 1, color: '#03B4FDFF' },
-                        { offset: 0.9, color: '#03B4FDFF' },
-                        { offset: 0, color: '#FFEE22FF' }
+                        { offset: 1, color: 'rgb(3,180,253)' },
+                        { offset: 0.9, color: 'rgb(3,180,253)' },
+                        { offset: 0, color: 'rgb(255,238,34)' }
                       ]
                     ),
                   pieces: [{ gte: 7, lte: 95, color: 'green' }]
@@ -631,8 +634,8 @@
                   color: new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 1, color: '#03B4FDFF' },
-                      { offset: 0, color: '#FFEE22FF' }
+                      { offset: 1, color: 'rgb(3,180,253)' },
+                      { offset: 0, color: 'rgb(255,238,34)' }
                     ]
                   )
                 }
@@ -722,7 +725,7 @@
               axisTick: { show: false }, //刻度线标签颜色
               axisLabel: {
                 interval: 0, //横坐标全部显示
-                color: '#03FCCDFF', //刻度线标签颜色
+                color: 'rgb(3,252,205)', //刻度线标签颜色
                 fontSize: 10
               },
               data: listAverageScore
@@ -736,13 +739,13 @@
               // axisLabel:{show:false},
               axisLabel: {
                 interval: 0, //横坐标全部显示
-                color: '#03FCCDFF', //刻度线标签颜色
+                color: 'rgb(3,252,205)', //刻度线标签颜色
                 fontSize: 6
               },
               splitLine: {
                 show: true,
                 lineStyle: {
-                  color: ['#37BDFF33'],
+                  color: ['rgb(55,189,255)'],
                   type: 'dashed'
                 }
               }
@@ -750,7 +753,7 @@
             series: [{
               data: averageScore,
               type: 'line',
-              color: '#F9D543FF',
+              color: 'rgb(249,213,67)',
               smooth: true,
               label: {
                 normal: {
@@ -761,16 +764,16 @@
               areaStyle: {
                 normal: {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0, color: '#F9D543FF' // 0% 处的颜色
+                    offset: 0, color: 'rgb(249,213,67)' // 0% 处的颜色
                   }, {
-                    offset: 0.4, color: '#F9D54385' // 100% 处的颜色
+                    offset: 0.4, color: 'rgb(249,213,67)' // 100% 处的颜色
                   }, {
-                    offset: 1, color: '#FFFFFF00' // 100% 处的颜色
+                    offset: 1, color: 'rgb(255,255,255)' // 100% 处的颜色
                   }]), //背景渐变色
                   lineStyle: { // 系列级个性化折线样式
                     width: 2,
                     type: 'solid',
-                    color: '#F9D543FF' //折线的颜色
+                    color: 'rgb(249,213,67)' //折线的颜色
                   }
                 }
                 },
@@ -835,14 +838,14 @@
               left: 'center',
               top: 'center',
               textStyle: {
-                color: '#F9D543FF',
+                color: 'rgb(249,213,67)',
                 fontSize: 13,
                 height: 10,
                 lineHeight: 10
               },
               subtextStyle: {
                 fontSize: 9,
-                color: '#03FCCDFF',
+                color: 'rgb(3,252,205)',
                 lineHeight: 2
               },
               itemGap: 3
@@ -886,7 +889,7 @@
                         verticalAlign: 'top'
                       },
                       hr: {
-                        borderColor: '#0f02cc',
+                        borderColor: 'rgb(15,2,204)',
                         width: '100%',
                         borderWidth: 0.5,
                         height: 0
@@ -897,7 +900,7 @@
               data: data
             }
             ],
-            color: ['#00FFE6FF', '#FF7F6EFF', '#FFBF45FF', '#23FF62FF', '#FF85C0FF']
+            color: ['rgb(0,255,230)', 'rgb(255,127,110)', 'rgb(255,191,69)', 'rgb(35,255,98)', 'rgb(255,133,192)']
           }
           listQuestionBank.setOption(listQuestionBankOption, true)
         }
@@ -957,7 +960,7 @@
                     show: true, // 是否显示完型填空等文字
                     formatter: null, // 完型填空等完型填空的显示形式
                     textStyle: {
-                      color: '#a3a5b6' // 完型填空等完型填空颜色
+                      color: 'rgb(163,165,182)' // 完型填空等完型填空颜色
                     }
                   },
                   indicator: efficiencyJsonArray,
@@ -967,29 +970,29 @@
                   axisLabel: { // 坐标轴文本标签，详见axis.axisLabel
                     show: false,
                     textStyle: {
-                      color: '#247bd7' // 坐标轴刻度文字的样式
+                      color: 'rgb(36,123,215)' // 坐标轴刻度文字的样式
                     }
                   },
                   splitArea: {
                     show: false,
                     areaStyle: {
-                      color: ['#2a4a93'] // 图表背景网格的颜色
+                      color: ['rgb(42,74,147)'] // 图表背景网格的颜色
                     }
                   },
                   splitLine: {
                     show: true,
                     lineStyle: {
                       width: 1,
-                      color: '#6FA7FFFA' // 图表背景网格线的颜色
+                      color: 'rgb(111,167,255)' // 图表背景网格线的颜色
                     }
                   }
                 }
               ],
               series: [{
-                name: '预算 vs 开销（Budget vs spending）',
+                name: '',
                 type: 'radar',
                 // areaStyle: {normal: {}},
-                color: '#8FFFC6FF',
+                color: 'rgb(143,255,198)',
                 data: [
                   {
                     value: efficiencyProgressArray
@@ -1022,8 +1025,7 @@
         return subjectsTopic
       },
       share () {
-        this.$router.push({ name: 'share', params: { weekReportId: this.$store.state.weekReportId } }).then(() => {
-        })
+        location.href='share.html?weekReportId='+this.$store.state.weekReportId;
       },
       viewTotalProgress() {
         this.$router.push({ name: 'totalProgress', params: { weekReportId: this.$store.state.weekReportId } }).then(() => {
@@ -1097,7 +1099,7 @@
                                 p {
                                     font-size: 20px;
                                     font-weight: 500;
-                                    color: #FFEE22FF;
+                                    color: $linkColor;
                                     span {
                                         font-size: 120px;
                                     }
@@ -1109,7 +1111,7 @@
                                 p {
                                     font-size: 25px;
                                     font-weight: 500;
-                                    color: #FFFFFFFF;
+                                    color: $FFFFFF;
                                 }
                             }
                             .first-view-overview-img1-line3 {
@@ -1117,7 +1119,7 @@
                                 p {
                                     font-size: 20px;
                                     font-weight: 500;
-                                    color: #60DAFFFF;
+                                    color: $DAFFFF;
                                 }
                             }
 
@@ -1145,7 +1147,7 @@
                             p {
                                 font-size: 20px;
                                 font-weight: 500;
-                                color: #FFEE22FF;
+                                color: $linkColor;
                                 span {
                                     font-size: 70px;
                                     font-weight: 500;
@@ -1158,7 +1160,7 @@
                             p {
                                 font-size: 23px;
                                 font-weight: 500;
-                                color: #FFFFFFFF;
+                                color: $FFFFFF;
                             }
                         }
                         .first-view-overview-img-line3 {
@@ -1166,7 +1168,7 @@
                             p {
                                 font-size: 20px;
                                 font-weight: 500;
-                                color: #60DAFFFF;
+                                color: $DAFFFF;
                             }
                         }
                     }
@@ -1192,7 +1194,7 @@
                             p {
                                 font-size: 20px;
                                 font-weight: 500;
-                                color: #FFEE22FF;
+                                color: $linkColor;
                                 span {
                                     font-size: 70px;
                                     font-weight: 500;
@@ -1205,7 +1207,7 @@
                             p {
                                 font-size: 23px;
                                 font-weight: 500;
-                                color: #FFFFFFFF;
+                                color: $FFFFFF;
                             }
                         }
                         .first-view-overview-img-line3 {
@@ -1213,7 +1215,7 @@
                             p {
                                 font-size: 20px;
                                 font-weight: 500;
-                                color: #60DAFFFF;
+                                color: $DAFFFF;
                             }
                         }
                     }
@@ -1232,7 +1234,7 @@
                     .total-task-text {
                         position: absolute;
                         font-size: 20px;
-                        color: #FFFFFFFF;
+                        color: $FFFFFF;
                         font-weight: 500;
                         top: 10px;
                         height: 20px;
@@ -1254,12 +1256,12 @@
                             .current-task-progress {
                                 position: absolute;
                                 width: 118%;
-                                margin-top: 1.5px;
+                                margin-top: 6px;
                                 height: 28px;
                             }
                             .planned-task-progress {
                                 position: absolute;
-                                margin-top: -16px;
+                                margin-top: -8px;
                                 width: 118%;
                                 height: 34px;
                             }
@@ -1288,13 +1290,13 @@
                         flex-direction: row;
                         .illustrate-color-block-current {
                             margin-top: .15rem;
-                            background: #0E9FD2FF;
+                            background: rgb(14,159,210);
                             margin-right: .2rem;
                             height: 8px;
                             width: 14px;
                         }
                         .illustrate-color-block-planned {
-                            background: #FFFF9BFF;
+                            background: rgb(255,255,155);
                             margin-top: .15rem;
                             margin-right: .2rem;
                             height: 8px;
@@ -1302,8 +1304,8 @@
                             margin-left: .4rem;
                         }
                         div {
-                            font-size: 4px;
-                            color: #41B1F9FF;
+                            font-size: 20px;
+                            color: rgb(65,177,249);
                         }
                     }
 
@@ -1342,7 +1344,7 @@
                         color:rgba(249,234,234,1);
                         line-height:37px;
                         span {
-                            color: #FFEE22FF;
+                            color: rgb(255,238,34)
                         }
                         .daily-task-texts {
                             margin-top: 20px;
@@ -1360,14 +1362,14 @@
                 .daily-task-details-text {
                     margin-left: 48px;
                     margin-top: 23px;
-                    margin-bottom: 89px;
+                    margin-bottom: 4px;
                     font-weight: 500;
                     p {
-                        color: #FFFFFFFF;
+                        color: rgb(255,255,255);
                         font-size: 26px;
                         padding: 8px;
                         span {
-                            color: #FFEE22FF;
+                            color: rgb(255,238,34);
                             font-size: 26px;
                             padding: 0 4px;
                         }
@@ -1437,10 +1439,10 @@
                     bottom: 40px;
                     left: 79px;
                     font-weight: 500;
-                    color: #FFFFFFFF;
+                    color: rgb(255,255,255);
                     font-size: 36px;
                     span {
-                        color: #FFEE22FF;
+                        color: rgb(255,238,34);
                     }
 
                 }
@@ -1569,7 +1571,7 @@
                                    font-weight:400;
                                    color:rgba(249,213,67,0.3);
                                    line-height:140px;
-                                   text-shadow:0px 0px 4px rgba(255,226,109,1), 0px 0px 4px rgba(255,221,84,1);
+                                   /*text-shadow:0px 0px 4px rgba(255,226,109,1), 0px 0px 4px rgba(255,221,84,1);*/
                                    -webkit-text-stroke:1px rgba(250,255,0,1);
                                    text-stroke:1px rgba(250,255,0,1);
                                    -webkit-background-clip:text;
@@ -1623,12 +1625,12 @@
                                 &:nth-child(1) {
                                     width: 247px;
                                     height:2px;
-                                    background: linear-gradient(to right, #005A82FF , #0891B4FF);
+                                    background: linear-gradient(to right, rgb(0,90,130) , rgb(8,145,180));
                                 }
                                 &:nth-child(2) {
                                     height:2px;
                                     width: 247px;
-                                    background: linear-gradient(to right, #0891B4FF , #005A82FF);
+                                    background: linear-gradient(to right, rgb(8,145,180) , rgb(0,90,130));
                                 }
                             }
                         }

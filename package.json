@@ -65,7 +65,6 @@
     "last 2 versions"
   ],
   "gitHooks": {
-
   },
   "lint-staged": {
     "*.{js,vue}": [

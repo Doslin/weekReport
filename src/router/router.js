@@ -3,12 +3,16 @@ import Router from 'vue-router'
 import index from '../components/index2.vue'
 import totalProgress from '../components/totalProgress.vue'
 import profile from '../components/profile.vue'
-import share from '../components/share.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: [
+    {
+      name: 'index',
+      path: '/index',
+      component: index
+    },
     {
       name: 'index',
       path: '/index',
@@ -23,11 +27,6 @@ export default new Router({
       name: 'profile',
       path: '/profile',
       component: profile
-    },
-    {
-      name: 'share',
-      path: '/share',
-      component: share
     }
   ]
 })
