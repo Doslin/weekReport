@@ -44,7 +44,7 @@ import zlProgress from '../utils/zlProgress'
 import page from './page'
 import zlFooter from './zlFooter'
   export default {
-    name: '',
+    name: ' ',
     components: {
       page,
       'zl-footer': zlFooter
@@ -61,13 +61,15 @@ import zlFooter from './zlFooter'
         }
       },
       mounted: function () {
-        this.$store.dispatch('setWeekReportID', this.GetQueryString('weekReportId'))
-        this.baseUrls = process.env.VUE_APP_WEEKREPORT_URL
-        this.$store.dispatch('setPageDescription', '')
-        this.$store.dispatch('setPageState', 1)
-        this.init()
-        console.log('GetQueryString(\'weekReportId\'): ' +this.$store.state.weekReportId)
-        console.log(this.GetQueryString('weekReportId'))
+        this.$store.dispatch('setWeekReportID', this.GetQueryString('weekReportId')).then(() => {
+          console.log("this.GetQueryString('weekReportId'):  " + this.GetQueryString('weekReportId'))
+          this.baseUrls = process.env.VUE_APP_WEEKREPORT_URL
+          this.$store.dispatch('setPageDescription', '')
+          this.$store.dispatch('setPageState', 1)
+          this.init()
+          console.log('GetQueryString(\'weekReportId\'): ' + this.$store.state.weekReportId)
+          console.log(this.GetQueryString('weekReportId'))
+        })
       },
       methods: {
         GetQueryString (name) {
@@ -100,6 +102,7 @@ import zlFooter from './zlFooter'
 
         init () {
           // this.baseUrls + 'weekReport/getWeekReportById?weekReportId=1'
+          // var baseUrl='http://exchange.lfenglish.cn/onlineEducation/';
           this.$http.get('http://192.168.1.72:8081/onlineEducation/' + 'weekReport/getWeekReportById?weekReportId=' + this.$store.state.weekReportId).then((res) => {
             if (res.data.state === 200) {
               this.studentName = res.data.userName

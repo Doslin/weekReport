@@ -42,7 +42,7 @@ const store = new Vuex.Store({
       return commit('SET_STUDENT_NAME', studentName)
     },
     setWeekReportID: ({ commit }, weekReportId) => {
-      return commit('SET_STUDENT_NAME', weekReportId)
+      return commit('SET_WEEK_REPORT_ID', weekReportId)
     }
   }
 })

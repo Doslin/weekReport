@@ -10,11 +10,11 @@ export default new Router({
   routes: [
     {
       name: 'index',
-      path: '/index',
+      path: '/',
       component: index
     },
     {
-      name: 'index',
+      name: 'index.html',
       path: '/index',
       component: index
     },
