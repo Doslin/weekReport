@@ -43,8 +43,15 @@
 import zlProgress from '../utils/zlProgress'
 import page from './page'
 import zlFooter from './zlFooter'
+// var baseUrl='http://exchange.lfenglish.cn/onlineEducation/';
+// var baseUrl = 'http://192.168.1.72:8081/onlineEducation/';
+// if(!sessionStorage.getItem("access_code")){
+//     var fromurl=location.href;//当前页面
+//     const url = '/onlineEducation/get-weixin-code.html?appid=wx721e839d738d3e7f&redirect_uri=' + encodeURIComponent(fromurl);
+//     location.href = url;
+// }
   export default {
-    name: ' ',
+    name: 'index',
     components: {
       page,
       'zl-footer': zlFooter
@@ -103,7 +110,8 @@ import zlFooter from './zlFooter'
         init () {
           // this.baseUrls + 'weekReport/getWeekReportById?weekReportId=1'
           // var baseUrl='http://exchange.lfenglish.cn/onlineEducation/';
-          this.$http.get('http://192.168.1.72:8081/onlineEducation/' + 'weekReport/getWeekReportById?weekReportId=' + this.$store.state.weekReportId).then((res) => {
+          // http://192.168.1.72:8081/onlineEducation/
+          this.$http.get('http://exchange.lfenglish.cn/onlineEducation/' + 'weekReport/getWeekReportById?weekReportId=' + this.$store.state.weekReportId).then((res) => {
             if (res.data.state === 200) {
               this.studentName = res.data.userName
               this.isHaveData = res.data.isHaveData
@@ -154,11 +162,24 @@ import zlFooter from './zlFooter'
                         color: #009FEFFF;
                         display: flex;
                     }
+                    img {
+                        /*position: absolute;*/
+                        width: 100%;
+                        height: 100%;
+                    }
                     .tip-item-text {
                         position: absolute;
                         top: 147px;
-                        left: 87px;
+                        /*left: 87px;*/
                         font-size: 65px;
+                        /*top: 34px;*/
+                        display: -moz-box;/*兼容Firefox*/
+                        display: -webkit-box;/*兼容FSafari、Chrome*/
+                        -moz-box-align: center;/*兼容Firefox*/
+                        -webkit-box-align: center;/*兼容FSafari、Chrome */
+                        -moz-box-pack: center;/*兼容Firefox*/
+                        -webkit-box-pack: center;/*兼容FSafari、Chrome */
+                        width: 564px;
                         color: white;
                     }
                 }

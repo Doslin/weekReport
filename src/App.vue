@@ -1,34 +1,36 @@
 <template>
   <div id="app">
       <transition name="fade">
+          <navigation>
              <router-view/>
+          </navigation>
       </transition>
   </div>
 </template>
 <script>
   export default {
     name: 'app',
-    // created() {
-    //   // bind event
-    //   this.$navigation.on('forward', (to, from) => {
-    //     console.log('forward to', to, 'from ', from)
-    //   })
-    //   this.$navigation.on('back', (to, from) => {
-    //   })
-    //   this.$navigation.on('replace', (to, from) => {
-    //   })
-    //   this.$navigation.on('refresh', (to, from) => {
-    //   })
-    //   this.$navigation.on('reset', () => {
-    //   })
-    //   // and use [once, off] methods
-    //   this.$navigation.once('forward', () => {
-    //   })
-    //   const off = () => {
-    //   }
-    //   this.$navigation.on('forward', off)
-    //   this.$navigation.off('forward', off)
-    // }
+    created() {
+      // bind event
+      this.$navigation.on('forward', (to, from) => {
+        console.log('forward to', to, 'from ', from)
+      })
+      this.$navigation.on('back', (to, from) => {
+      })
+      this.$navigation.on('replace', (to, from) => {
+      })
+      this.$navigation.on('refresh', (to, from) => {
+      })
+      this.$navigation.on('reset', () => {
+      })
+      // and use [once, off] methods
+      this.$navigation.once('forward', () => {
+      })
+      const off = () => {
+      }
+      this.$navigation.on('forward', off)
+      this.$navigation.off('forward', off)
+    }
   }
 document.addEventListener('DOMContentLoaded', () => {
   //    将根元素的fontsize值设置为屏幕宽度的1/10

@@ -6,13 +6,13 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+  publicPath: './',
   lintOnSave: true,
   chainWebpack: config => {
     // 路径配置
     config.resolve.alias
       .set('assets', resolve('src/assets'))
       .set('styles', resolve('src/assets/styles'))
-
     // <!--新增的内容-->
     config.module
       .rule('css')

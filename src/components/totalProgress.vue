@@ -7,7 +7,7 @@
                     <div class="task_plan-ti_ku_item task_plan-wrapper">
                         <div class="userProgress_item_title flex_between">
                             <span class="userProgress_item_title_text">任务计划</span>
-                            <span v-cloak class="userProgress_item_title_percentage">{{renderData.currentTaskDays != null ?renderData&&renderData.currentTaskDays: '--'}}/{{this.totalTaskDays}}</span>
+                            <span v-cloak class="userProgress_item_title_percentage forcefontsize10">{{renderData.currentTaskDays != null ?renderData&&renderData.currentTaskDays: '--'}}/{{this.totalTaskDays}}</span>
                         </div>
                         <div class="progress-graph">
                             <div class=" userProgress_item_progress flex_between">当前完成
@@ -19,7 +19,7 @@
                     <div class="task_plan-ti_ku_item ti_ku-wrapper" @click="reload()" >
                         <div class="userProgress_item_title flex_between">
                             <span class="userProgress_item_title_text">专项练习</span>
-                            <span v-cloak class="userProgress_item_title_percentage ">{{renderData.questionAnswerNum?renderData&&renderData.questionAnswerNum:0}}/{{renderData.questionTotalNum}}</span>
+                            <span v-cloak class="userProgress_item_title_percentage forcefontsize10">{{renderData.questionAnswerNum?renderData&&renderData.questionAnswerNum:0}}/{{renderData.questionTotalNum}}</span>
                         </div>
                         <div class="progress-graph">
                             <div class=" userProgress_item_progress flex_between">当前完成
@@ -32,12 +32,12 @@
                     <div class="completePaper_word_composition-item">
                         <!--真题练习-->
                         <div class="userProgress_item" v-cloak>
-                            <div class="userProgress_item_title flex_between">
+                            <div class="userProgress_item_title">
                                 <div class="userProgress_item_title-yellow-square"></div>
                                 <p>
                                     <span>真题练习</span>
                                 </p>
-                                <div class=" userProgress_item_title_quantity">
+                                <div class=" userProgress_item_title_quantity userProgress_item_title01">
                                     <div>已完成{{this.renderData.completePaperNum?this.renderData&&this.renderData.completePaperNum:0}}套试卷</div>
                                 </div>
                             </div>
@@ -108,9 +108,9 @@ export default {
   mounted () {
     this.$store.dispatch('setPageState', '20')
     this.$store.dispatch('setPageDescription', '总计划完成情况')
-    console.log('this.$route.params.weekReportId：' + this.$store.state.weekReportId)
     this.weekReportId = this.$route.params.weekReportId
-    this.$http.get(process.env.VUE_APP_WEEKREPORT_URL + 'weekReport/userTotalProgress?weekReportId=' + this.$store.state.weekReportId)
+    // http://192.168.1.72:8081/onlineEducation/
+    this.$http.get('http://exchange.lfenglish.cn/onlineEducation/' + 'weekReport/userTotalProgress?weekReportId=' + this.$store.state.weekReportId)
       .then((res) => {
         if (res.data.state === 200) {
           this.renderData = res.data.data.renderData
@@ -121,7 +121,7 @@ export default {
   methods: {
     //  返回按钮
     back() {
-      this.$router.push('/index')
+      this.$router.go(-1)
     },
     reload () {
       location.reload()
@@ -190,7 +190,7 @@ export default {
                             }
                             .userProgress_item_title_percentage {
                                 position: absolute;
-                                left: 163px;
+                                left: 156px;
                                 top: 20px;
                                 width:60px;
                                 height:25px;
@@ -203,7 +203,7 @@ export default {
                         }
                         .progress-graph {
                             position: absolute;
-                            top: 48px;
+                            top: 56px;
                             left: -14px;
                             .userProgress_item_progress {
                                 margin-top: 22px;
@@ -236,10 +236,10 @@ export default {
                                 }
                             }
                             .userProgress_item_progress_task_plan {
-                                margin-top: 30px !important;
+                                margin-top: 23px !important;
                             }
                             .userProgress_item_progress:nth-child(2) {
-                                margin-top: 30px !important;
+                                margin-top: 22px !important;
                             }
                         }
 
@@ -274,7 +274,7 @@ export default {
                             }
                             .userProgress_item_title {
                                 position: relative;
-                                margin-bottom: 12px;
+                                margin-bottom: 15px;
                                 display: flex;
                                 flex-direction: row;
                                 font-size:24px;
@@ -303,6 +303,7 @@ export default {
                                     right: 6px;
                                 }
                             }
+
                             .userProgress_item_progress {
                                 position: relative;
                                 width: 100%;

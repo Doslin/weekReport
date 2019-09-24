@@ -411,9 +411,9 @@
     name: '',
     mounted () {
       this.initSwiper()
-      var ss = [{ 'score': 25.0, 'paperName': '2018年全国Ⅰ卷高考真题A', 'duration': 100018, 'submitTime': '2019-09-10 16:04:17' },
-        { 'score': 25.0, 'paperName': '2018年全国Ⅰ卷高考真题A', 'duration': 100018, 'submitTime': '2019-09-10 16:04:17' }]
-      // eval(this.$store.state.pageData.paperDetailsJson)
+      // var ss = [{ 'score': 25.0, 'paperName': '2018年全国Ⅰ卷高考真题A', 'duration': 100018, 'submitTime': '2019-09-10 16:04:17' },
+      //   { 'score': 25.0, 'paperName': '2018年全国Ⅰ卷高考真题A', 'duration': 100018, 'submitTime': '2019-09-10 16:04:17' }]
+      var ss = eval(this.$store.state.pageData.paperDetailsJson)
       this.paperDetailsJsonArray = ss
       console.log(this.paperDetailsJsonArray)
       this.dataZoom = [
@@ -468,6 +468,17 @@
             }
           }
         })
+        setTimeout(() => {
+          var swiper3 = new Swiper('.swi-con', {
+            observer: true,
+            observeParents: true,
+            pagination: {
+              el: '.swi-con-pagination',
+              clickable: true
+            }
+          })
+        },1500)
+
       },
       MillisecondToDate(value) {
         var secondTime = parseInt(value / 1000)// 秒
@@ -650,7 +661,6 @@
           this.$store.dispatch('setPageState', '11')
         }
         else if (activeIndex === 4) { //第五屏
-          this.fourthScreen = true
           var swiper3 = new Swiper('.swi-con', {
             observer: true,
             observeParents: true,
@@ -659,12 +669,12 @@
               clickable: true
             }
           })
+          this.fourthScreen = true
           this.$store.dispatch('setPageDescription', '真题考核')
           this.$store.dispatch('setPageState', '11')
           // 真题考核图表
-          // '[25,100,89,100,56,100,23,23]'
           var averageScoreJsonArray = eval(this.$store.state.pageData.averageScoreJson)
-          // console.log((typeof averageScoreJsonArray=='object')&&averageScoreJsonArray.constructor==Array)
+          console.log(averageScoreJsonArray)
           var ExamPaper = this.$echarts.init(document.getElementById('ExamPaper'))
           ExamPaper.clear()
           var averageScore = averageScoreJsonArray
@@ -745,8 +755,9 @@
               splitLine: {
                 show: true,
                 lineStyle: {
-                  color: ['rgb(55,189,255)'],
-                  type: 'dashed'
+                  // color: ['rgb(55,189,255)'],
+                  color: ['rgba(55,189,255,0.2)'],
+                  type: 'solid'
                 }
               }
             }],

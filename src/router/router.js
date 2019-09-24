@@ -6,16 +6,11 @@ import profile from '../components/profile.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       name: 'index',
       path: '/',
-      component: index
-    },
-    {
-      name: 'index.html',
-      path: '/index',
       component: index
     },
     {
